@@ -7,5 +7,9 @@ namespace BlazorApp.Models.Enemies
         public string Name { get; set; }
         public List<BehaviourChartColumn> BehaviourChartColumns { get; set; }
 
+        public Enemy(string name)
+        {
+            Name = name;
+        }
     }
 }

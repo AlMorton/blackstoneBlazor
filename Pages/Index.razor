@@ -1,25 +1,23 @@
 ﻿@page "/"
-@using Models
-@using Newtonsoft.Json
+@using Models.Enemies
+@using BlazorApp.Components
+<div class="container">
+    @foreach(var enemy in Enemies)
+    {
+        var e = enemy;
 
-<h1>Hello, world!</h1>
-
-Welcome to your new app.
-
-<p>@JSON</p>
-
-<SurveyPrompt Title="How is Blazor working for you?" />
-
+        <EnemyView @bind-Enemy="e" />
+    }
+</div>
 
 @code {
 
-    public BehaviourChartColumn BehaviourChartColumn { get; set; }
-    public string JSON { get; set; }
+    [Parameter]
+    public RenderFragment Enemy { get; set; }
 
-
-
-    protected override async Task OnInitializedAsync()
+    [Parameter]
+    public List<Enemy> Enemies { get; set; } = new List<Enemy>
     {
-        
-    }
+        new Enemy("Traitor Guard"), new Enemy("Spindle Drones")
+    };
 }
