@@ -7,7 +7,7 @@ namespace BlazorApp.Models
 {
     public class BehaviourChart
     {
-
+        
     }
 
     public enum Status
@@ -28,6 +28,5 @@ namespace BlazorApp.Models
         public static string FallBack { get; set; } = "FallBack";
         public static string Aim { get; set; } = "Aim";
         public static string Onslaught { get; set; } = "Onslaught";
-    }    
-    
+    }       
 }
