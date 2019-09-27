@@ -1,38 +1,49 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace BlazorApp.Models
 {
-    public class BehaviourChart 
-    {
-        public Status Status { get; set; }
-        public SortedList<RollRange, string> Actions { get; set; }
 
-        public BehaviourChart()
+    public class BehaviourChartColumn 
+    {
+        public string Status { get; set; }
+        public List<IRollRange> Actions { get; set; }    
+        public BehaviourChartColumn()
         {
-            Actions = new SortedList<RollRange, string>();
+            this.Status = StatusEnum.Hidden.ToString();
+            Actions = new List<IRollRange>();
+            Actions.Add(new RollRange(1, 3, EnemyActions.Hold));
+            Actions.Add(new RollRange(4, 6, EnemyActions.Sneak));
+            Actions.Add(new RollRange(7, 12, EnemyActions.Advance));
+            Actions.Add(new RollRange(13, 19, EnemyActions.Charge));
+            Actions.Add(new RollRange(20, 20, "Rush"));            
         }
 
-        public void GetStatus()
+        public string GetStatus(IRollRange roll)
         {
-           
+            Actions.BinarySearch(roll);
+            return "";
+            //return Actions[roll];
         }
     }
 
-    public interface IRollRange
+    public interface IRollRange : IComparable<IRollRange>
     {
         int From { get; }
         int To { get; }
     }
 
-    public class RollRange : IRollRange, IComparer<IRollRange>, IComparable<IRollRange>
+    public class RollRange : IRollRange, IComparer<IRollRange>
     {
         public int From { get; set; }
         public int To { get; set; }
-        public string Result { get; set; }
+        public string ActionTaken { get; set; } 
+        public RollRange(int from, int to, string action)
+        {
+            From = from;
+            To = to;
+            ActionTaken = action;
+        }
 
         public int Compare(IRollRange x, IRollRange y)
         {
@@ -54,7 +65,7 @@ namespace BlazorApp.Models
         }
     }
 
-    public enum Status
+    public enum StatusEnum
     {
         Hidden,
         Engaged,
@@ -63,7 +74,7 @@ namespace BlazorApp.Models
         Other
     }
 
-    public static class Actions
+    public static class EnemyActions
     {
         public static string Hold { get; } = "Hold";
         public static string Sneak { get; set; } = "Sneak";

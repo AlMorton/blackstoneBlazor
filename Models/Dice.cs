@@ -33,5 +33,10 @@ namespace BlazorApp.Models
             
             return roll < Sides * fullSetsOfValues;
         }
+
+        public int CompareTo(IRollRange other)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
