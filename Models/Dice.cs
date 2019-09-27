@@ -9,7 +9,7 @@ namespace BlazorApp.Models
         public int From { get; private set; }
         public int To => From;
 
-        private RNGCryptoServiceProvider rngCsp = new RNGCryptoServiceProvider();
+        private readonly RNGCryptoServiceProvider rngCsp = new RNGCryptoServiceProvider();
         public Dice(int sides)
         {
             Sides = sides;

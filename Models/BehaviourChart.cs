@@ -16,7 +16,7 @@ namespace BlazorApp.Models
             Actions = new SortedList<RollRange, string>();
         }
 
-        public void GetStatus(int diceRoll)
+        public void GetStatus()
         {
            
         }

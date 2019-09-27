@@ -6,12 +6,13 @@ using Microsoft.JSInterop;
 using Microsoft.AspNetCore.Blazor;
 using Microsoft.AspNetCore.Components;
 using System.Timers;
+using BlazorApp.Models;
 
 namespace BlazorApp.Pages
 {
     public class CounterPageComponent : ComponentBase
     {
-        public int currentCount = 0;
+        public Dice Dice = new Dice(20);
 
         public List<NameForm> Names = new List<NameForm>
         {
@@ -35,7 +36,7 @@ namespace BlazorApp.Pages
         }
         public void IncrementCount()
         {
-            currentCount++;
+            Dice.RollDice();
         }     
        
     }

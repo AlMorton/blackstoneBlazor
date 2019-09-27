@@ -1,10 +1,15 @@
 ﻿@page "/counter"
 @inherits CounterPageComponent
+@using BlazorApp.Pages
 <div class="container">
+    <Index />
     <div class="myRow">
-        <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
-        <br />
-        <p>Current count: @currentCount</p>
+        <div class="col-5">
+            <button class="btn btn-primary" @onclick="Dice.RollDice">Roll Dice</button>
+        </div>
+        <div class="col-3">
+            <p>Result @Dice.From</p>
+        </div>
     </div>
 </div>
 <div class="container">
