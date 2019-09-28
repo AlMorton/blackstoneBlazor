@@ -12,7 +12,7 @@ namespace BlazorApp
 
             services.AddScoped<IDice, Dice>(x => {
                 return new Dice(20);
-            });
+            });            
         }
 
         public void Configure(IComponentsApplicationBuilder app)

@@ -3,7 +3,7 @@
 @inherits EnemyComponent
 <div class="card">
     <div class="card-body">
-        <h4>@Enemy.Name</h4>
+        <h2 class="card-title">@Enemy.Name</h2>
 
         @foreach (var column in Enemy.BehaviourChartColumns)
         {
@@ -11,8 +11,8 @@
             <button class="btn btn-dark" @onclick="@( c => SetStatus(col) )">@column.Status</button>
         }
 
-        <h2>@Enemy.Status</h2>
-        <h2>Dice roll: @DiceRoll</h2>
+        <h3>@Enemy.Status</h3>
+        <h4>Dice roll: @DiceRoll</h4>
     </div>
 </div>
 

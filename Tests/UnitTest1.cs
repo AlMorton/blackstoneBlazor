@@ -22,9 +22,37 @@ namespace Tests
         }
 
         [Test]
+        public void OpenDirectoryAndAggregateJsonToOneFile()
+        {
+            var files = Directory.GetFiles(@"C:\VisualStudio\BlazorApp\wwwroot\enemy-data", "*.json");
+
+            var newFileContent = "[";
+
+            foreach(var filePath in files)
+            {
+                if(!filePath.Contains("enemies"))
+                {
+                    var fileContent = File.ReadAllText(filePath);
+                    newFileContent += fileContent;
+                    newFileContent += ",";
+                }                
+            }
+
+            newFileContent += "]";
+            // Remove the last comma after the last json object
+            newFileContent.LastIndexOf(',');
+            newFileContent = newFileContent.Remove(newFileContent.LastIndexOf(','), 1);
+
+            var fs = File.Create(@"C:\VisualStudio\BlazorApp\wwwroot\enemy-data\enemies.json");
+            fs.Dispose();
+            File.WriteAllText(@"C:\VisualStudio\BlazorApp\wwwroot\enemy-data\enemies.json", newFileContent);
+        }
+
+        [Test]
         public void JsonTest()
         {
-            string path = @"C:\VisualStudio\BlazorApp\wwwroot\sample-data\test.json";
+            
+            string path = @"C:\VisualStudio\BlazorApp\wwwroot\enemy-data\traitor-guard.json";
             var content = File.ReadAllText(path);
             var converted = JsonConvert.DeserializeObject<List<Enemy>>(content);
             var testSubject = converted[0].BehaviourChartColumns[0];
@@ -44,19 +72,10 @@ namespace Tests
         [Test]
         public void TimeZone()
         {
+            // This doesn't work in blazor, sadly. Probably because none of the system timezones work from the browser.
             var d = DateTimeOffset.Now;
             var date = TimeZoneInfo.ConvertTime(d, TimeZoneInfo.FindSystemTimeZoneById("US Eastern Standard Time"));
         }
-
-        [Test]
-        public void Test1()
-        {
-            BehaviourChartColumn = new BehaviourChartColumn();
-            string json = JsonConvert.SerializeObject(BehaviourChartColumn, Formatting.None);
-
-            var annoyingFuckingBackSlashRemoved = json.Replace(@"\\", string.Empty);
-
-            Assert.Pass();
-        }
+       
     }
 }

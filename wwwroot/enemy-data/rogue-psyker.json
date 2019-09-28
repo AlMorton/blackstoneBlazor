@@ -1,33 +1,28 @@
 {
-  "Name": "Traitor Guard",
+  "Name": "Rogue Psyker",
   "BehaviourChartColumns": [
     {
       "Status": "Hidden",
       "Actions": [
         {
           "From": 1,
-          "To": 3,
+          "To": 9,
           "ActionTaken": "Hold"
         },
         {
-          "From": 4,
-          "To": 6,
-          "ActionTaken": "Sneak"
+          "From": 10,
+          "To": 15,
+          "ActionTaken": "Disrupt"
         },
         {
-          "From": 7,
-          "To": 12,
-          "ActionTaken": "Advance"
-        },
-        {
-          "From": 13,
+          "From": 16,
           "To": 19,
-          "ActionTaken": "Charge"
-        },
+          "ActionTaken": "Regenerate"
+        },      
         {
           "From": 20,
           "To": 20,
-          "ActionTaken": "Rush"
+          "ActionTaken": "Empower"
         }
       ]
     },
@@ -36,41 +31,21 @@
       "Actions": [
         {
           "From": 1,
-          "To": 3,
+          "To": 6,
           "ActionTaken": "Fall Back"
         },
         {
-          "From": 4,
-          "To": 19,
+          "From": 7,
+          "To": 15,
           "ActionTaken": "Onslaught"
         },
         {
-          "From": 20,
+          "From": 16,
           "To": 20,
-          "ActionTaken": "Fury"
+          "ActionTaken": "Annihilate"
         }
       ]
-    },
-    {
-      "Status": "In Cover",
-      "Actions": [
-        {
-          "From": 1,
-          "To": 9,
-          "ActionTaken": "Aim"
-        },
-        {
-          "From": 10,
-          "To": 19,
-          "ActionTaken": "Onslaught"
-        },
-        {
-          "From": 20,
-          "To": 20,
-          "ActionTaken": "Fury"
-        }
-      ]
-    },
+    },    
     {
       "Status": "Close",
       "Actions": [
@@ -82,17 +57,22 @@
         {
           "From": 4,
           "To": 9,
-          "ActionTaken": "Onslaught"
+          "ActionTaken": "Disrupt"
         },
         {
           "From": 10,
+          "To": 15,
+          "ActionTaken": "Onslaught"
+        },
+        {
+          "From": 16,
           "To": 19,
-          "ActionTaken": "Charge"
+          "ActionTaken": "Regenerate"
         },
         {
           "From": 20,
           "To": 20,
-          "ActionTaken": "Fury"
+          "ActionTaken": "Empower"
         }
       ]
     },
@@ -101,23 +81,28 @@
       "Actions": [
         {
           "From": 1,
-          "To": 6,
-          "ActionTaken": "Advance"
+          "To": 3,
+          "ActionTaken": "Hold"
         },
         {
-          "From": 7,
-          "To": 12,
-          "ActionTaken": "Aim"
+          "From": 4,
+          "To": 9,
+          "ActionTaken": "Disrupt"
         },
         {
-          "From": 13,
-          "To": 19,
+          "From": 10,
+          "To": 15,
           "ActionTaken": "Onslaught"
+        },
+        {
+          "From": 16,
+          "To": 19,
+          "ActionTaken": "Regenerate"
         },
         {
           "From": 20,
           "To": 20,
-          "ActionTaken": "Rush"
+          "ActionTaken": "Empower"
         }
       ]
     }

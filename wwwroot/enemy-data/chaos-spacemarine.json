@@ -1,5 +1,5 @@
 {
-  "Name": "Traitor Guard",
+  "Name": "Chaos Space Marine",
   "BehaviourChartColumns": [
     {
       "Status": "Hidden",
@@ -7,25 +7,20 @@
         {
           "From": 1,
           "To": 3,
-          "ActionTaken": "Hold"
-        },
-        {
-          "From": 4,
-          "To": 6,
           "ActionTaken": "Sneak"
         },
         {
-          "From": 7,
-          "To": 12,
+          "From": 4,
+          "To": 9,
           "ActionTaken": "Advance"
         },
         {
-          "From": 13,
-          "To": 19,
+          "From": 10,
+          "To": 15,
           "ActionTaken": "Charge"
-        },
+        },      
         {
-          "From": 20,
+          "From": 16,
           "To": 20,
           "ActionTaken": "Rush"
         }
@@ -36,18 +31,13 @@
       "Actions": [
         {
           "From": 1,
-          "To": 3,
-          "ActionTaken": "Fall Back"
-        },
-        {
-          "From": 4,
-          "To": 19,
+          "To": 15,
           "ActionTaken": "Onslaught"
-        },
+        },        
         {
-          "From": 20,
+          "From": 16,
           "To": 20,
-          "ActionTaken": "Fury"
+          "ActionTaken": "Rapid Fire"
         }
       ]
     },
@@ -56,18 +46,23 @@
       "Actions": [
         {
           "From": 1,
-          "To": 9,
+          "To": 3,
           "ActionTaken": "Aim"
         },
         {
           "From": 10,
-          "To": 19,
+          "To": 12,
           "ActionTaken": "Onslaught"
         },
         {
-          "From": 20,
+          "From": 13,
+          "To": 15,
+          "ActionTaken": "Advance"
+        },
+        {
+          "From": 16,
           "To": 20,
-          "ActionTaken": "Fury"
+          "ActionTaken": "Rapid Fire"
         }
       ]
     },
@@ -76,23 +71,23 @@
       "Actions": [
         {
           "From": 1,
-          "To": 3,
-          "ActionTaken": "Fall Back"
+          "To": 6,
+          "ActionTaken": "Aim"
         },
         {
-          "From": 4,
-          "To": 9,
+          "From": 7,
+          "To": 12,
           "ActionTaken": "Onslaught"
         },
         {
-          "From": 10,
-          "To": 19,
-          "ActionTaken": "Charge"
+          "From": 13,
+          "To": 15,
+          "ActionTaken": "Advance"
         },
         {
-          "From": 20,
+          "From": 16,
           "To": 20,
-          "ActionTaken": "Fury"
+          "ActionTaken": "Rapid Fire"
         }
       ]
     },
@@ -101,23 +96,18 @@
       "Actions": [
         {
           "From": 1,
-          "To": 6,
-          "ActionTaken": "Advance"
-        },
-        {
-          "From": 7,
-          "To": 12,
+          "To": 9,
           "ActionTaken": "Aim"
         },
         {
-          "From": 13,
-          "To": 19,
-          "ActionTaken": "Onslaught"
+          "From": 10,
+          "To": 15,
+          "ActionTaken": "Advance"
         },
         {
-          "From": 20,
+          "From": 16,
           "To": 20,
-          "ActionTaken": "Rush"
+          "ActionTaken": "Rapid Fire"
         }
       ]
     }

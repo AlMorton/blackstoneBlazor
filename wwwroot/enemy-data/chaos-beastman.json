@@ -1,5 +1,5 @@
 {
-  "Name": "Traitor Guard",
+  "Name": "Chaos Beastman",
   "BehaviourChartColumns": [
     {
       "Status": "Hidden",
@@ -12,18 +12,13 @@
         {
           "From": 4,
           "To": 6,
-          "ActionTaken": "Sneak"
-        },
-        {
-          "From": 7,
-          "To": 12,
           "ActionTaken": "Advance"
         },
         {
-          "From": 13,
+          "From": 7,
           "To": 19,
           "ActionTaken": "Charge"
-        },
+        },      
         {
           "From": 20,
           "To": 20,
@@ -36,51 +31,21 @@
       "Actions": [
         {
           "From": 1,
-          "To": 3,
-          "ActionTaken": "Fall Back"
-        },
-        {
-          "From": 4,
-          "To": 19,
+          "To": 15,
           "ActionTaken": "Onslaught"
         },
         {
-          "From": 20,
+          "From": 16,
           "To": 20,
           "ActionTaken": "Fury"
-        }
+        }     
       ]
-    },
-    {
-      "Status": "In Cover",
-      "Actions": [
-        {
-          "From": 1,
-          "To": 9,
-          "ActionTaken": "Aim"
-        },
-        {
-          "From": 10,
-          "To": 19,
-          "ActionTaken": "Onslaught"
-        },
-        {
-          "From": 20,
-          "To": 20,
-          "ActionTaken": "Fury"
-        }
-      ]
-    },
+    },    
     {
       "Status": "Close",
       "Actions": [
         {
           "From": 1,
-          "To": 3,
-          "ActionTaken": "Fall Back"
-        },
-        {
-          "From": 4,
           "To": 9,
           "ActionTaken": "Onslaught"
         },
@@ -88,11 +53,11 @@
           "From": 10,
           "To": 19,
           "ActionTaken": "Charge"
-        },
+        }, 
         {
           "From": 20,
           "To": 20,
-          "ActionTaken": "Fury"
+          "ActionTaken": "Rush"
         }
       ]
     },
@@ -101,19 +66,14 @@
       "Actions": [
         {
           "From": 1,
-          "To": 6,
+          "To": 9,
           "ActionTaken": "Advance"
         },
         {
-          "From": 7,
-          "To": 12,
-          "ActionTaken": "Aim"
-        },
-        {
-          "From": 13,
+          "From": 10,
           "To": 19,
-          "ActionTaken": "Onslaught"
-        },
+          "ActionTaken": "Charge"
+        },       
         {
           "From": 20,
           "To": 20,
