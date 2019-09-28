@@ -199,7 +199,7 @@
   ]
 }
 ,{
-  "Name": "Negavlot Cultist",
+  "Name": "Negavolt Cultist",
   "BehaviourChartColumns": [
     {
       "Status": "Hidden",
@@ -379,7 +379,7 @@
   ]
 }
 ,{
-  "Name": "Spindle Drones",
+  "Name": "Spindle Drone",
   "BehaviourChartColumns": [
     {
       "Status": "Hidden",
