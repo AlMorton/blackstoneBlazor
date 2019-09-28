@@ -113,6 +113,11 @@ app {
     color: red;
 }
 
+.enemy-card {
+    flex: 40%;
+    max-width: 50%;
+}
+
 @media (max-width: 767.98px) {
     .main .top-row {
         display: none;
