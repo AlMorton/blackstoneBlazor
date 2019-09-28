@@ -1,7 +1,7 @@
 ﻿@page "/"
 @using Models.Enemies
 @using BlazorApp.Components
-@inject HttpClient Http
+@inherits IndexComponent
 <div class="container">
     <div class="row">
         @if (Enemies == null)
@@ -17,16 +17,4 @@
         }
     </div>
 </div>
-
-@code {
-
-    [Parameter]
-    public RenderFragment Enemy { get; set; }
-
-    private List<Enemy> Enemies { get; set; } 
-
-    protected override async Task OnInitializedAsync()
-    {
-        Enemies = await Http.GetJsonAsync<List<Enemy>>("sample-data/test.json");
-    }
-}
+@
