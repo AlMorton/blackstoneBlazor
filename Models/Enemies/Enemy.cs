@@ -11,11 +11,6 @@ namespace BlazorApp.Models.Enemies
         public Enemy()
         {
 
-        }        
-        public EventCallback SetStatus(int number)
-        {
-            Status = $"Changed {number}";
-            return new EventCallback();
-        }
+        }    
     }
 }

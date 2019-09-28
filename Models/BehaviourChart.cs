@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace BlazorApp.Models
 {
@@ -14,21 +15,27 @@ namespace BlazorApp.Models
 
         }
         public string GetStatus(RollRange roll)
-        {            
-            var index = Actions.BinarySearch(roll);
-            if(index != -1) return Actions[index].ActionTaken;
+        {
+            var result = "Confusion!";
 
-            return "Confusion!";
+            foreach (var rr in Actions)
+            {
+                if (roll.From >= rr.From && roll.To <= rr.To)
+                {
+                    return result = rr.ActionTaken;
+                }
+            }
+            return result;
         }
     }
 
-    public interface IRollRange : IComparable<IRollRange>
+    public interface IRollRange
     {
         int From { get; set; }
         int To { get; set; }
     }
 
-    public class RollRange : IRollRange, IComparer<IRollRange>
+    public class RollRange : IRollRange
     {
         public int From { get; set; }
         public int To { get; set; }
@@ -36,26 +43,7 @@ namespace BlazorApp.Models
         public RollRange()
         {
 
-        }      
-
-        public int Compare(IRollRange x, IRollRange y)
-        {
-            if (x.From > y.From) return 1;
-            if (x.From < y.From) return -1;
-            else return 0;            
-        }
-
-        public int CompareTo(IRollRange other)
-        {
-            // Falls between
-            if (other.From >= From && To <= other.To) return 1;
-
-            if (From > other.From) return 1;
-
-            if (From < other.From) return 0;
-
-            else return -1;
-        }
+        }    
     }
 
     public enum StatusEnum

@@ -7,9 +7,12 @@
 
         @foreach (var column in Enemy.BehaviourChartColumns)
         {
-            <button class="btn btn-dark" @onclick="@Enemy.SetStatus(1)">@column.Status</button>
+            var col = column;
+            <button class="btn btn-dark" @onclick="@( c => SetStatus(col) )">@column.Status</button>
         }
+
         <h2>@Enemy.Status</h2>
+        <h2>Dice roll: @DiceRoll</h2>
     </div>
 </div>
 

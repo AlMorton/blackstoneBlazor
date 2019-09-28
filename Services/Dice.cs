@@ -6,7 +6,7 @@ namespace BlazorApp.Services
 {
     public interface IDiceRollService
     {
-        IRollRange GetRoll();
+        RollRange GetRoll();
     }
 
     public class DiceRollService : IDiceRollService
@@ -20,12 +20,12 @@ namespace BlazorApp.Services
             _rollRange = new RollRange();
         }
 
-        public IRollRange GetRoll()
+        public RollRange GetRoll()
         {
             var result = _dice.RollDice();
             _rollRange.From = result;
             _rollRange.To = _rollRange.From;
-            return _rollRange;
+            return (RollRange)_rollRange;
         }
     }
 
