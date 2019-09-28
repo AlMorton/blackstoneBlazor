@@ -1,7 +1,8 @@
 ﻿@import url('open-iconic/font/css/open-iconic-bootstrap.min.css');
 
 html, body {
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-family: 'Audiowide', cursive;
+    
 }
 
 app {
@@ -18,11 +19,27 @@ app {
 
 .main {
     flex: 1;
-}
+}   
 
-    .main .top-row {
-        background-color: #e6e6e6;
-        border-bottom: 1px solid #d6d5d5;
+.btn-dice {
+    display: inline-block;
+    background-image: url(../images/d20.png);
+    background-size: contain;
+    border: 1px solid transparent;
+    border-radius: 50%;
+    box-shadow: rgba(0,0,0,0.5) 5px 5px 10px 1px;
+    height: 100px;
+    width: 100px;
+}
+    .btn-dice:active {
+        display: inline-block;
+        background-image: url(../images/d20.png);
+        background-size: 95%;
+        border: 1px solid transparent;
+        border-radius: 50%;
+        box-shadow: none;
+        height: 100px;
+        width: 100px;
     }
 
 .sidebar {
@@ -132,9 +149,4 @@ app {
         /* Never collapse the sidebar for wide screens */
         display: block;
     }
-
-    .myRow {
-        display: flex;
-        align-content: space-between;
-    } 
 }

@@ -7,12 +7,17 @@ using Microsoft.AspNetCore.Blazor;
 using Microsoft.AspNetCore.Components;
 using System.Timers;
 using BlazorApp.Models;
+using BlazorApp.Services;
 
 namespace BlazorApp.Pages
 {
     public class CounterPageComponent : ComponentBase
     {
-        public Dice Dice = new Dice(20);
+        [Inject]
+        public IDiceRollService Dice { get; set; }
+        public DateTimeOffset Date { get; set; }
+
+        public EventCallback DiceRollResult { get; set; }
 
         public List<NameForm> Names = new List<NameForm>
         {
@@ -28,16 +33,23 @@ namespace BlazorApp.Pages
         public CounterPageComponent()
         {
             
+            // This errors in the browser
+            var tz = TimeZoneInfo.Utc;
+            var d = DateTimeOffset.Now;
+            Date = TimeZoneInfo.ConvertTime(d, tz);
+        }
+
+        public EventCallback RollDice()
+        {
+            var result = this.Dice.GetRoll();
+            DiceRollResult = new EventCallback();
+            return DiceRollResult;
         }
 
         public void UpdateView()
         {
             this.StateHasChanged();
-        }
-        public void IncrementCount()
-        {
-            Dice.RollDice();
-        }     
+        }      
        
     }
 

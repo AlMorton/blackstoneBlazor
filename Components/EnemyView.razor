@@ -1,7 +1,18 @@
 ﻿@using BlazorApp.Components
+@using BlazorApp.Services
 @inherits EnemyComponent
+<div class="card">
+    <div class="card-body">
+        <h4>@Enemy.Name</h4>
 
-<h1>@Name</h1>
-<p>Hello</p>
+        @foreach (var column in Enemy.BehaviourChartColumns)
+        {
+            <button class="btn btn-dark" @onclick="@Enemy.SetStatus(1)">@column.Status</button>
+        }
+        <h2>@Enemy.Status</h2>
+    </div>
+</div>
+
+
 
 

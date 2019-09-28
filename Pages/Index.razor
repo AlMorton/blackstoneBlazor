@@ -1,13 +1,21 @@
 ﻿@page "/"
 @using Models.Enemies
 @using BlazorApp.Components
+@inject HttpClient Http
 <div class="container">
-    @foreach(var enemy in Enemies)
-    {
-        var e = enemy;
-
-        <EnemyView @bind-Enemy="e" />
-    }
+    <div class="row">
+        @if (Enemies == null)
+        {
+            <p>loading... </p>
+        }
+        else
+        {
+            @foreach (var enemy in Enemies)
+            {
+                <EnemyView Enemy="enemy" />
+            }
+        }
+    </div>
 </div>
 
 @code {
@@ -15,9 +23,10 @@
     [Parameter]
     public RenderFragment Enemy { get; set; }
 
-    [Parameter]
-    public List<Enemy> Enemies { get; set; } = new List<Enemy>
+    private List<Enemy> Enemies { get; set; } 
+
+    protected override async Task OnInitializedAsync()
     {
-        new Enemy("Traitor Guard"), new Enemy("Spindle Drones")
-    };
+        Enemies = await Http.GetJsonAsync<List<Enemy>>("sample-data/test.json");
+    }
 }

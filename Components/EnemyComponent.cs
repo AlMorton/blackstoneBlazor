@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using BlazorApp.Models.Enemies;
+using BlazorApp.Services;
 
 namespace BlazorApp.Components
 {
@@ -11,9 +12,9 @@ namespace BlazorApp.Components
     {
         [Parameter]
         public Enemy Enemy { get; set; }
-        [Parameter]
-        public EventCallback<Enemy> EnemyChanged { get; set; }
-        public string Name { get; set; }
+
+        [Inject]
+        public IDiceRollService DiceRollService { get; private set; }
         
     }
 }

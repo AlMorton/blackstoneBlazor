@@ -7,43 +7,36 @@ namespace BlazorApp.Models
     public class BehaviourChartColumn 
     {
         public string Status { get; set; }
-        public List<IRollRange> Actions { get; set; }    
+        public List<RollRange> Actions { get; set; }
+
         public BehaviourChartColumn()
         {
-            this.Status = StatusEnum.Hidden.ToString();
-            Actions = new List<IRollRange>();
-            Actions.Add(new RollRange(1, 3, EnemyActions.Hold));
-            Actions.Add(new RollRange(4, 6, EnemyActions.Sneak));
-            Actions.Add(new RollRange(7, 12, EnemyActions.Advance));
-            Actions.Add(new RollRange(13, 19, EnemyActions.Charge));
-            Actions.Add(new RollRange(20, 20, "Rush"));            
-        }
 
-        public string GetStatus(IRollRange roll)
-        {
-            Actions.BinarySearch(roll);
-            return "";
-            //return Actions[roll];
+        }
+        public string GetStatus(RollRange roll)
+        {            
+            var index = Actions.BinarySearch(roll);
+            if(index != -1) return Actions[index].ActionTaken;
+
+            return "Confusion!";
         }
     }
 
     public interface IRollRange : IComparable<IRollRange>
     {
-        int From { get; }
-        int To { get; }
+        int From { get; set; }
+        int To { get; set; }
     }
 
     public class RollRange : IRollRange, IComparer<IRollRange>
     {
         public int From { get; set; }
         public int To { get; set; }
-        public string ActionTaken { get; set; } 
-        public RollRange(int from, int to, string action)
+        public string ActionTaken { get; set; }
+        public RollRange()
         {
-            From = from;
-            To = to;
-            ActionTaken = action;
-        }
+
+        }      
 
         public int Compare(IRollRange x, IRollRange y)
         {
