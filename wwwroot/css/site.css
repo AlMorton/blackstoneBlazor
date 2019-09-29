@@ -120,9 +120,9 @@ app {
     flex: 40%;
     max-width: 50%;
     background: #0e2739ab;
+    background-image: linear-gradient(to right, #0e2739ab, #00dcff59);
     color: #bfbfbf;
-    margin:2px;
-
+    margin: 2px;
 }
 
 
