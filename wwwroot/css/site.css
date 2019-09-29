@@ -19,6 +19,9 @@ app {
 
 .main {
     flex: 1;
+    background-image: url(../images/bgk.jpg);
+    background-position:center;
+    background-size:cover;
 }   
 
 .btn-dice {
@@ -116,7 +119,21 @@ app {
 .enemy-card {
     flex: 40%;
     max-width: 50%;
+    background: #0e2739ab;
+    color: #bfbfbf;
+    margin:2px;
+
 }
+
+
+.enemy-card .btn.btn-dark {
+    background-color: #475e9ca8
+}
+
+    .enemy-card h3.status {
+        color: #36ffff;
+    }
+
 .minimized {
     height: 70px;
     overflow: hidden;
