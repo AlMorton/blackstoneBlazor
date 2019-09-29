@@ -13,10 +13,11 @@ namespace BlazorApp.Pages
 
         public List<Enemy> Enemies { get; set; }
 
-        public List<Enemy> ArenaEnemies { get; set; } = new List<Enemy>();
+        public List<Enemy> ArenaEnemies { get; set; }
 
         protected override async Task OnInitializedAsync()
         {
+            ArenaEnemies = new List<Enemy>();
             this.Enemies = await EnemyService.Enemies;
         }
 

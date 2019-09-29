@@ -46,7 +46,7 @@ app {
     }
 
 .sidebar {
-    background-image: linear-gradient(180deg, rgb(5, 39, 103) 0%, #3a0647 70%);
+    background-image: linear-gradient(90deg, rgb(5, 39, 103) 0%, #000 100%);
 }
 
     .sidebar .top-row {
@@ -116,9 +116,11 @@ app {
     color: red;
 }
 
+/* My little style changes and overrides */
+
 .enemy-card {
     flex: 40%;
-    max-width: 50%;
+    max-width: 40%;
     background: #0e2739ab;
     background-image: linear-gradient(to right, #0e2739ab, #00dcff59);
     color: #bfbfbf;
