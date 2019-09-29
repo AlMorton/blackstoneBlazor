@@ -19,7 +19,7 @@ app {
 
 .main {
     flex: 1;
-    background-image: url(../images/bgk.jpg);
+    background-image: url(../images/bgk.png);
     background-position:center;
     background-size:cover;
 }   

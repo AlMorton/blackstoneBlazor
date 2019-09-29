@@ -57,11 +57,7 @@ namespace Tests
             var converted = JsonConvert.DeserializeObject<List<Enemy>>(content);
             var testSubject = converted[0].BehaviourChartColumns[0];
 
-            var diceRoll = new RollRange
-            {
-                From = 15,
-                To = 15
-            };
+            var diceRoll = 15;            
 
             var x = testSubject.GetStatus(diceRoll);
 
@@ -77,5 +73,16 @@ namespace Tests
             var date = TimeZoneInfo.ConvertTime(d, TimeZoneInfo.FindSystemTimeZoneById("US Eastern Standard Time"));
         }
        
+    }
+
+    public static class EnemyActions
+    {
+        public static string Hold { get; } = "Hold";
+        public static string Sneak { get; set; } = "Sneak";
+        public static string Advance { get; set; } = "Advance";
+        public static string Charge { get; set; } = "Charge";
+        public static string FallBack { get; set; } = "FallBack";
+        public static string Aim { get; set; } = "Aim";
+        public static string Onslaught { get; set; } = "Onslaught";
     }
 }

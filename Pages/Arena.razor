@@ -1,0 +1,29 @@
+﻿@using BlazorApp.Pages
+@using BlazorApp.Components
+@using BlazorApp.Services
+@page "/arena"
+@inherits ArenaCompenent
+
+<div class="container">
+    <div class="row">
+        <div class="row">
+            @if (Enemies == null)
+            {
+                <p>loading... </p>
+            }
+            else
+            {
+                @foreach (var enemy in Enemies)
+                {
+                    <button class="btn-dark" @onclick="@( () => AddEnemy(enemy))">@enemy.Name</button>
+                }
+            }
+        </div>
+    </div>
+    <div class="row">
+        @foreach (var enemy in ArenaEnemies)
+        {
+            <EnemyView Enemy="enemy" @onclick="@(() => AddEnemy(enemy))"/>
+        }
+    </div>
+</div>

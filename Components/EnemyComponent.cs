@@ -24,11 +24,9 @@ namespace BlazorApp.Components
 
         public EventCallback<MouseEventArgs> SetStatus(BehaviourChartColumn behaviourChartColumn)
         {
-            var result = DiceRollService.GetRoll();
+            DiceRoll = DiceRollService.GetRoll();
 
-            DiceRoll = result.From;
-
-            Enemy.Status = behaviourChartColumn.GetStatus(result);
+            Enemy.Status = behaviourChartColumn.GetStatus(DiceRoll);
 
             return new EventCallback<MouseEventArgs>();
         }
