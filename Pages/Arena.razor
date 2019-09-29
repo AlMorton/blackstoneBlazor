@@ -23,7 +23,7 @@
     <div class="row">
         @foreach (var enemy in ArenaEnemies)
         {
-            <EnemyView Enemy="enemy" @onclick="@(() => AddEnemy(enemy))"/>
+            <EnemyView Enemy="enemy"/>
         }
     </div>
 </div>

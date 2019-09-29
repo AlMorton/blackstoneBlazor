@@ -2,7 +2,7 @@
 
 html, body {
     font-family: 'Audiowide', cursive;
-    
+    background: #000;
 }
 
 app {
@@ -125,14 +125,13 @@ app {
     margin: 2px;
 }
 
-
 .enemy-card .btn.btn-dark {
     background-color: #475e9ca8
 }
-
     .enemy-card h3.status {
         color: #36ffff;
     }
+
 
 .minimized {
     height: 70px;
@@ -143,9 +142,21 @@ app {
     .main .top-row {
         display: none;
     }
+    .enemy-card {
+        flex: 100%;
+        max-width: 100%;
+    }
+        .enemy-card h1 {
+            font-size: 1.5rem;
+        }
+        .enemy-card h2, .enemy-card h4 {
+            font-size: 1rem;
+        }
 }
 
 @media (min-width: 768px) {
+
+
     app {
         flex-direction: row;
     }
