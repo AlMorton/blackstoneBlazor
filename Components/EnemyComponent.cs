@@ -15,9 +15,15 @@ namespace BlazorApp.Components
         [Parameter]
         public Enemy Enemy { get; set; }
 
+        [Parameter]
+        public EventCallback<MouseEventArgs> OnClick { get; set; }
+
+        [Parameter]
+        public bool Removable { get; set; }
+
         public int DiceRoll { get; set; }
 
-        public bool Style { get; set; }
+        public bool Minimized { get; set; }
 
         [Inject]
         public IDiceRollService DiceRollService { get; private set; }
@@ -32,7 +38,7 @@ namespace BlazorApp.Components
         }
         public void Minimize()
         {
-            Style = Style == true ? false : true;
+            Minimized = Minimized == true ? false : true;
         }        
     }
 }

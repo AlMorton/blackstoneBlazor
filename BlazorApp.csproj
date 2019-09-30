@@ -9,9 +9,13 @@
 
   <ItemGroup>
     <Compile Remove="Tests\**" />
+    <Compile Remove="wwwroot\sass\**" />
     <Content Remove="Tests\**" />
+    <Content Remove="wwwroot\sass\**" />
     <EmbeddedResource Remove="Tests\**" />
+    <EmbeddedResource Remove="wwwroot\sass\**" />
     <None Remove="Tests\**" />
+    <None Remove="wwwroot\sass\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -24,7 +28,6 @@
 
   <ItemGroup>
     <Folder Include="Sass\" />
-    <Folder Include="wwwroot\sass\" />
   </ItemGroup>
 
 </Project>

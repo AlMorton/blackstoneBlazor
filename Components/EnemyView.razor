@@ -1,9 +1,13 @@
 ﻿@using BlazorApp.Components
 @using BlazorApp.Services
 @inherits EnemyComponent
-<div class="card enemy-card @((Style ? "minimized" : ""))" >
+<div class="card enemy-card @(Minimized ? "minimized" : "")">
     <div class="card-body">
         <h2 class="card-title" @onclick="@Minimize">@Enemy.Name</h2>
+        @if (Removable)
+        {
+            <span class="oi oi-trash" @onclick="OnClick"></span>
+        }
 
         @foreach (var column in Enemy.BehaviourChartColumns)
         {
@@ -11,8 +15,10 @@
             <button class="btn btn-dark" @onclick="@( c => SetStatus(col) )">@column.Status</button>
         }
 
-        <h3 class="status">@Enemy.Status</h3>
-        <h4>Dice roll: @DiceRoll</h4>
+        <div class="status-roll">
+            <h4>Dice roll: @DiceRoll</h4>
+            <h4 class="status">@Enemy.Status</h4>
+        </div>
     </div>
 </div>
 

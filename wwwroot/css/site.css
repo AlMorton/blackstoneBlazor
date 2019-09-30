@@ -31,9 +31,11 @@ app {
 
 .main {
     flex: 1;
-    background-image: url(../images/bgk.png);    
-    animation: bgk-anime 40s linear infinite;   
-}   
+    background-image: url(../images/bgk.png);
+    background-position: center;
+    background-size: cover;
+}
+
 
 .btn-dice {
     display: inline-block;
@@ -45,6 +47,7 @@ app {
     height: 100px;
     width: 100px;
 }
+
     .btn-dice:active {
         display: inline-block;
         background-image: url(../images/d20.png);
@@ -130,7 +133,7 @@ app {
 /* My little style changes and overrides */
 
 .loading {
-    color:#fff;
+    color: #fff;
 }
 
 .enemy-card {
@@ -142,33 +145,98 @@ app {
     margin: 2px;
 }
 
-.enemy-card .btn.btn-dark {
-    background-color: #475e9ca8
-}
-    .enemy-card h3.status {
+    .enemy-card .btn.btn-dark {
+        background-color: #475e9ca8
+    }
+
+    .enemy-card h4.status {
         color: #36ffff;
     }
 
+    .enemy-card .oi-trash {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+    }
+
+.status-roll {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2px;
+}
 
 .minimized {
     height: 70px;
     overflow: hidden;
 }
 
+.expand-panel {
+    display: none;
+}
+
 @media (max-width: 767.98px) {
     .main .top-row {
         display: none;
     }
+
     .enemy-card {
         flex: 100%;
         max-width: 100%;
     }
+
         .enemy-card h1 {
             font-size: 1.5rem;
         }
+
         .enemy-card h2, .enemy-card h4 {
             font-size: 1rem;
         }
+
+    .container-fluid {
+        height: 100vh;
+    }
+
+    .expand-panel {
+        height: 40px;
+        margin-top: 5px;
+        width: 100%;
+        display: flex;
+        color: #144545;
+        justify-content: center;
+        background-image: linear-gradient(180deg, rgb(5, 39, 103) 0%, #000 100%);
+        font-size: 40px;
+    }
+
+    @keyframes collapse {
+        from {
+            height: 100px;
+        }
+
+        to {
+            height: 0px;
+        }
+    }
+
+    @keyframes expand {
+        from {
+            height: 0px;
+        }
+
+        to {
+            height: 100px;
+        }
+    }
+
+    .row.enemy-selection.collapsed {
+        height: 0;
+        overflow: hidden;
+        animation: collapse 0.5s ease-out;
+    }
+
+    .row.enemy-selection.expanded {
+        animation: expand 0.5s ease-out;
+        overflow: hidden;
+    }
 }
 
 @media (min-width: 768px) {

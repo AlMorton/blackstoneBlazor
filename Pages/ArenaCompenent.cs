@@ -11,14 +11,18 @@ namespace BlazorApp.Pages
         [Inject]
         public IEnemyService EnemyService { get; private set; }
 
-        public List<Enemy> Enemies { get; set; }
+        public List<Enemy> Enemies { get; set; } = new List<Enemy>();
 
-        public List<Enemy> ArenaEnemies { get; set; }
+        public List<Enemy> ArenaEnemies { get; set; } = new List<Enemy>();
+
+        public bool Loading { get; set; }
+        public bool IsExpanded { get; private set; }  
 
         protected override async Task OnInitializedAsync()
-        {
-            ArenaEnemies = new List<Enemy>();
+        {   
             this.Enemies = await EnemyService.Enemies;
+
+            ArenaEnemies = EnemyService.ArenaEnemies;
         }
 
         public void AddEnemy(Enemy enemy)
@@ -31,6 +35,11 @@ namespace BlazorApp.Pages
             {
                 ArenaEnemies.Remove(enemy);
             }            
+        }
+
+        public void ExpandPanel()
+        {
+            IsExpanded = (IsExpanded == true) ? false : true;            
         }
     }
 }

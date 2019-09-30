@@ -10,13 +10,17 @@ namespace BlazorApp.Services
     public interface IEnemyService
     {
         Task<List<Enemy>> Enemies { get; }
+
+        List<Enemy> ArenaEnemies { get; }
     }
     public class EnemyService : IEnemyService
     {
         private readonly HttpClient _http;
         private readonly NavigationManager _NavigationManager;
+
         private List<Enemy> _enemies;
         public Task<List<Enemy>> Enemies { get; set; }
+        public List<Enemy> ArenaEnemies { get; private set; } = new List<Enemy>();
 
         public EnemyService(NavigationManager navigationManager, HttpClient httpClient)
         {
