@@ -144,14 +144,21 @@ app {
     color: #bfbfbf;
     margin: 2px;
 }
-
+    .enemy-card .card-body {
+        padding: 1rem;
+    }
     .enemy-card .btn.btn-dark {
         background-color: #475e9ca8
+    }
+
+    .enemy-card h4 {
+        flex: 1;
     }
 
     .enemy-card h4.status {
         color: #36ffff;
     }
+
 
     .enemy-card .oi-trash {
         position: absolute;
@@ -162,7 +169,7 @@ app {
 .status-roll {
     display: flex;
     justify-content: space-between;
-    margin-top: 2px;
+    padding-top: 1rem;
 }
 
 .minimized {
