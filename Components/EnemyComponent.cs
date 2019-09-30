@@ -21,9 +21,7 @@ namespace BlazorApp.Components
         [Parameter]
         public bool Removable { get; set; }
 
-        public int DiceRoll { get; set; }
-
-        public bool Minimized { get; set; }
+        public int DiceRoll { get; set; }     
 
         [Inject]
         public IDiceRollService DiceRollService { get; private set; }
@@ -35,10 +33,6 @@ namespace BlazorApp.Components
             Enemy.Status = behaviourChartColumn.GetStatus(DiceRoll);
 
             return new EventCallback<MouseEventArgs>();
-        }
-        public void Minimize()
-        {
-            Minimized = Minimized == true ? false : true;
-        }        
+        }                
     }
 }
