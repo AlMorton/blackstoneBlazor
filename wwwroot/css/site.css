@@ -17,11 +17,22 @@ app {
     align-items: center;
 }
 
+@keyframes bgk-anime {
+    from {
+        background-position-x: 0%;
+        background-position-y: 0%;
+    }
+
+    to {
+        background-position-x: 100%;
+        background-position-y: -200%;
+    }
+}
+
 .main {
     flex: 1;
-    background-image: url(../images/bgk.png);
-    background-position:center;
-    background-size:cover;
+    background-image: url(../images/bgk.png);    
+    animation: bgk-anime 40s linear infinite;   
 }   
 
 .btn-dice {
@@ -118,9 +129,13 @@ app {
 
 /* My little style changes and overrides */
 
+.loading {
+    color:#fff;
+}
+
 .enemy-card {
     flex: 40%;
-    max-width: 40%;
+    max-width: 45%;
     background: #0e2739ab;
     background-image: linear-gradient(to right, #0e2739ab, #00dcff59);
     color: #bfbfbf;
