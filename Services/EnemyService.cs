@@ -36,12 +36,13 @@ namespace BlazorApp.Services
         private async Task<List<Enemy>> Del()
         {
             var baseUri = _NavigationManager.BaseUri;
+
             if (_enemies is null)
             {
                 _enemies = await _http.GetJsonAsync<List<Enemy>>($"{baseUri}enemy-data/enemies.json");
             }
 
             return this._enemies;
-        }
+        }        
     }
 }

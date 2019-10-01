@@ -23,6 +23,10 @@ namespace BlazorApp.Components
 
         public int DiceRoll { get; set; }     
 
+        public string Action { get; set; }
+
+        public bool IsCollapsed { get; private set; }
+
         [Inject]
         public IDiceRollService DiceRollService { get; private set; }
 
@@ -32,7 +36,16 @@ namespace BlazorApp.Components
 
             Enemy.Status = behaviourChartColumn.GetStatus(DiceRoll);
 
+            string action = "";
+            Constants.Actions.TryGetValue(Enemy.Status, out action);
+            Action = action;
+
             return new EventCallback<MouseEventArgs>();
-        }                
+        }           
+        
+        public void Shrink()
+        {
+            IsCollapsed = (IsCollapsed) ? false : true;
+        }
     }
 }

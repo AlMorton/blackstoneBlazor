@@ -5,6 +5,10 @@
 @inherits ArenaCompenent
 
 <div class="container-fluid">
+    @if(Loading)
+    {
+        <h2>Loading.......</h2>
+    }
     <div class="row enemy-selection @(IsExpanded ? "collapsed" : "expanded")">
 
         @foreach (var enemy in Enemies)

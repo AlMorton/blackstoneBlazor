@@ -18,6 +18,10 @@
         <div class="status-roll">
             <h4>Dice roll: @DiceRoll</h4>
             <h4 class="status">@Enemy.Status</h4>
+            
+        </div>
+        <div class="action-container @(IsCollapsed ? "collapsed" : "")" @onclick="Shrink">
+            <p>@Action</p>
         </div>
     </div>
 </div>

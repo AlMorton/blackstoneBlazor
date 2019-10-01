@@ -166,6 +166,20 @@ app {
         top: 10px;
     }
 
+.action-container {
+    width: 100%;
+    height: auto;
+    padding: 15px;
+    z-index: 10;
+    background-color: #01023e7d;
+    border-radius: 10px;
+    border: 1px solid #28a745;
+}
+.action-container.collapsed {
+    height: 48px;
+    overflow: hidden;
+}
+
 .status-roll {
     display: flex;
     justify-content: space-between;

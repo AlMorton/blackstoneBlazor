@@ -10,18 +10,15 @@ namespace BlazorApp.Pages
     {
         [Inject]
         public IEnemyService EnemyService { get; private set; }
-
         public List<Enemy> Enemies { get; set; } = new List<Enemy>();
-
         public List<Enemy> ArenaEnemies { get; set; } = new List<Enemy>();
-
         public bool Loading { get; set; }
-        public bool IsExpanded { get; private set; }  
-
+        public bool IsExpanded { get; private set; } 
         protected override async Task OnInitializedAsync()
-        {   
-            this.Enemies = await EnemyService.Enemies;
-
+        {
+            Loading = true;
+            this.Enemies = await EnemyService.Enemies;                  
+            Loading = false;
             ArenaEnemies = EnemyService.ArenaEnemies;
         }
 
