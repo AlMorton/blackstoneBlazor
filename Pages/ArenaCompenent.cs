@@ -17,9 +17,9 @@ namespace BlazorApp.Pages
         protected override async Task OnInitializedAsync()
         {
             Loading = true;
-            this.Enemies = await EnemyService.Enemies;                  
-            Loading = false;
-            ArenaEnemies = EnemyService.ArenaEnemies;
+            Enemies = await EnemyService.Enemies;
+            ArenaEnemies = await EnemyService.ArenaEnemies;
+            Loading = false;         
         }
 
         public void AddEnemy(Enemy enemy)

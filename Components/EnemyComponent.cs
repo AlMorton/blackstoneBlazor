@@ -25,7 +25,7 @@ namespace BlazorApp.Components
 
         public string Action { get; set; }
 
-        public bool IsCollapsed { get; private set; }
+        public bool IsCollapsed { get; private set; }        
 
         [Inject]
         public IDiceRollService DiceRollService { get; private set; }
@@ -46,6 +46,12 @@ namespace BlazorApp.Components
         public void Shrink()
         {
             IsCollapsed = (IsCollapsed) ? false : true;
+        }
+
+        public DragEventArgs HandleDragStart(DragEventArgs dragEvent)
+        {
+            Console.WriteLine(dragEvent);
+            return dragEvent;
         }
     }
 }

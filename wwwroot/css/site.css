@@ -195,6 +195,22 @@ app {
     display: none;
 }
 
+.drop-areas-container {
+    width:100%;
+    display:flex;
+    flex-direction:row;    
+}
+
+.drop-area {
+    width: 200px;
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    min-height: 200px;
+    border-radius: 10px;
+    border: 1px solid #28a745;
+}
+
 @media (max-width: 767.98px) {
     .main .top-row {
         display: none;
@@ -215,6 +231,7 @@ app {
 
     .container-fluid {
         height: 100vh;
+       
     }
 
     .expand-panel {

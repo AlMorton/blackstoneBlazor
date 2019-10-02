@@ -1,7 +1,7 @@
 ﻿@using BlazorApp.Components
 @using BlazorApp.Services
 @inherits EnemyComponent
-<div class="card enemy-card">
+<div class="card enemy-card" draggable="true" @ondragstart="((e) => HandleDragStart(e))">
     <div class="card-body">
         <h2 class="card-title">@Enemy.Name</h2>
         @if (Removable)

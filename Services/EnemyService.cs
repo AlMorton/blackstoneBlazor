@@ -11,7 +11,7 @@ namespace BlazorApp.Services
     {
         Task<List<Enemy>> Enemies { get; }
 
-        List<Enemy> ArenaEnemies { get; }
+        Task<List<Enemy>> ArenaEnemies { get; }
     }
     public class EnemyService : IEnemyService
     {
@@ -20,17 +20,28 @@ namespace BlazorApp.Services
 
         private List<Enemy> _enemies;
         public Task<List<Enemy>> Enemies { get; set; }
-        public List<Enemy> ArenaEnemies { get; private set; } = new List<Enemy>();
+        public Task<List<Enemy>> ArenaEnemies { get; private set; } 
 
         public EnemyService(NavigationManager navigationManager, HttpClient httpClient)
         {
             _NavigationManager = navigationManager;
             _http = httpClient;
             SetEnemies();
+            ArenaEnemies = SetArenaEnemies();
         }
         private void SetEnemies()
         {
             Enemies = Del();
+        }
+
+        private Task<List<Enemy>> SetArenaEnemies()
+        {
+             var t = new Task<List<Enemy>>(() =>
+            {
+                return new List<Enemy>();
+            });
+            t.Start();
+            return t;            
         }
 
         private async Task<List<Enemy>> Del()
