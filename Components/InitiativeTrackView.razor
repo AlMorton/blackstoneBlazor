@@ -1,15 +1,22 @@
 ﻿@using BlazorApp.Components
 @using BlazorApp.Services
 @inherits InitiativeTrackComponent
-<button class="btn alert-dark" @onclick="Shuffle"></button>
+
+@if (Enemies.Count > 0)
+{
+    <button class="btn alert-dark" @onclick="Shuffle">Shuffle</button>
+}
 <div class="drop-areas-container">
     @foreach (var enemy in Enemies)
     {
         <div class="drop-area" ondragover="event.preventDefault();"
              @ondrop="HandleDrop"
              @ondragenter="HandleDragEnter"
-             @ondragleave="HandleDragLeave">
-            <EnemyView Enemy="enemy" />
+             @ondragleave="HandleDragLeave">     
+            <h2 class="enemy-name @SetDragStyle(enemy)" draggable="true" ondragover="event.preventDefault();"
+                @ondragenter="@((e) => this.OnDraggedOver(e, enemy))"
+                @ondragstart="@((e) => this.OnBeingDragged(e, enemy))"
+                >@enemy.Name</h2>
         </div>
     }
 </div>

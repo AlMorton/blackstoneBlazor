@@ -18,7 +18,7 @@ namespace BlazorApp.Pages
         {
             Loading = true;
             Enemies = await EnemyService.Enemies;
-            ArenaEnemies = await EnemyService.ArenaEnemies;
+            ArenaEnemies = EnemyService.ArenaEnemies;
             Loading = false;         
         }
 

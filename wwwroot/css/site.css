@@ -165,6 +165,15 @@ app {
         right: 10px;
         top: 10px;
     }
+h2.enemy-name {
+    color:white;
+}
+
+h2.dragged {
+    color: aquamarine;
+    background: white; 
+    transform:rotateZ(20);
+}
 
 .action-container {
     width: 100%;
