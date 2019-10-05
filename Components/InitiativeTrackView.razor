@@ -13,9 +13,11 @@
              @ondrop="HandleDrop"
              @ondragenter="HandleDragEnter"
              @ondragleave="HandleDragLeave">     
-            <h2 class="enemy-name @SetDragStyle(enemy)" draggable="true" ondragover="event.preventDefault();"
-                @ondragenter="@((e) => this.OnDraggedOver(e, enemy))"
+            <h2 class="enemy-name @SetDragStyle(enemy)" draggable="true" 
+                ondragover="event.preventDefault();"
                 @ondragstart="@((e) => this.OnBeingDragged(e, enemy))"
+                @ondragenter="@((e) => this.OnDraggedOver(e, enemy))"
+                
                 >@enemy.Name</h2>
         </div>
     }

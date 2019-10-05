@@ -207,7 +207,8 @@ h2.dragged {
 .drop-areas-container {
     width:100%;
     display:flex;
-    flex-direction:row;    
+    flex-direction:row; 
+    flex-wrap:wrap;
 }
 
 .drop-area {
