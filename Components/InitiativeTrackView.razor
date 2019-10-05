@@ -2,23 +2,28 @@
 @using BlazorApp.Services
 @inherits InitiativeTrackComponent
 
-@if (Enemies.Count > 0)
-{
-    <button class="btn alert-dark" @onclick="Shuffle">Shuffle</button>
-}
-<div class="drop-areas-container">
-    @foreach (var enemy in Enemies)
+<div class="row">
+    @if (Enemies.Count > 0)
     {
-        <div class="drop-area" ondragover="event.preventDefault();"
-             @ondrop="HandleDrop"
-             @ondragenter="HandleDragEnter"
-             @ondragleave="HandleDragLeave">     
-            <h2 class="enemy-name @SetDragStyle(enemy)" draggable="true" 
-                ondragover="event.preventDefault();"
-                @ondragstart="@((e) => this.OnBeingDragged(e, enemy))"
-                @ondragenter="@((e) => this.OnDraggedOver(e, enemy))"
-                
-                >@enemy.Name</h2>
-        </div>
+        <button class="btn btn-secondary" @onclick="Shuffle">Shuffle</button>
     }
+    <div class="drop-areas-container">
+        @foreach (var enemy in Enemies)
+        {
+            <div class="drop-area" ondragover="event.preventDefault();"
+                 @ondrop="HandleDrop"
+                 @ondragenter="HandleDragEnter"
+                 @ondragleave="HandleDragLeave">
+
+                <div class="initiative-card @SetDragStyle(enemy)" draggable="true"
+                     ondragover="event.preventDefault();"
+                     @ondragstart="@((e) => this.OnBeingDragged(e, enemy))"
+                     @ondragenter="@((e) => this.OnDraggedOver(e, enemy))">
+                    <h4 class="enemy-name">
+                        @enemy.Name
+                    </h4>
+                </div>
+            </div>
+        }
+    </div>
 </div>
