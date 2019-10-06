@@ -17,18 +17,17 @@ namespace BlazorApp.Components
         [Parameter]
         public List<Enemy> Enemies { get; set; }
         public List<Adventurer> Adventurers { get; set; }
-        public List<IHasName> InitiativeTrack { get; set; }
-        public IHasName DraggedOver { get; set; }
-        public IHasName BeingDragged { get; set; }
+        public List<IAttributes> InitiativeTrack { get; set; }
+        public IAttributes DraggedOver { get; set; }
+        public IAttributes BeingDragged { get; set; }
         public string DraggedStyle { get; set; }
-
         protected override void OnInitialized()
         {   
             Adventurers = AdventurersConstants.Adventurers;
             InitiativeTrack = EnemyService.InitiativeTrack;
         }
 
-        public void AddAdventurer(IHasName adventurer)
+        public void AddAdventurer(IAttributes adventurer)
         {
             if (InitiativeTrack.IndexOf(adventurer) == -1)
             {
@@ -45,7 +44,7 @@ namespace BlazorApp.Components
             var length = InitiativeTrack.Count;
             var maxNumber = length;
             Random random = new Random();
-            var movedToHistory = new Dictionary<int, IHasName>();
+            var movedToHistory = new Dictionary<int, IAttributes>();
 
             for (int i = length - 1; i > 0; i--)
             {
@@ -68,28 +67,51 @@ namespace BlazorApp.Components
 
         }
 
-        public void HandleDragLeave()
-        {
+        public void HandleDragLeave()        {
 
         }
 
-        public string SetDragStyle(IHasName hasName)
+        public string SetDragStyle(IAttributes item)
         {
-            if (hasName == BeingDragged)
+            if (item == BeingDragged)
             {
+                item.CSSClass = "dragged";
                 return "dragged";
             }
+            item.CSSClass = "";
             return "";
         }
-        public void OnBeingDragged(DragEventArgs e, IHasName hasName)
+        public void OnBeingDragged(DragEventArgs e, IAttributes item)
         {
             e.DataTransfer.DropEffect = "move";
-            BeingDragged = hasName;
+            BeingDragged = item;
         }
 
-        public void OnDraggedOver(DragEventArgs e, IHasName hasName)
+        public void OnDraggedOver(DragEventArgs e, IAttributes item)
         {
-            DraggedOver = hasName;
+            DraggedOver = item;
+        }
+
+        public void HandleOnTouch(TouchEventArgs e, IAttributes item)
+        {
+            if (BeingDragged is null)
+            {
+                BeingDragged = item;                
+            }
+            else if(BeingDragged != item)
+            {
+                DraggedOver = item;                
+                HandleDrop();
+            }
+            else
+            {
+                BeingDragged = item;
+            }                     
+        }
+
+        public void HandleTouchEnter(TouchEventArgs e, IAttributes item)
+        {
+            
         }
 
         public void HandleDrop()

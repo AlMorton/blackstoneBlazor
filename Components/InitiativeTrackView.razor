@@ -2,7 +2,7 @@
 @using BlazorApp.Services
 @inherits InitiativeTrackComponent
 
-<div class="row">
+<div class="row">   
     @foreach (var adventurer in Adventurers)
     {
         <button class="btn btn-light"
@@ -23,12 +23,16 @@
                 <div class="drop-area" ondragover="event.preventDefault();"
                      @ondrop="HandleDrop"
                      @ondragenter="HandleDragEnter"
-                     @ondragleave="HandleDragLeave">
+                     @ondragleave="HandleDragLeave"                     
+                     >
 
                     <div class="initiative-card @SetDragStyle(item)" draggable="true"
                          ondragover="event.preventDefault();"
                          @ondragstart="@((e) => this.OnBeingDragged(e, item))"
-                         @ondragenter="@((e) => this.OnDraggedOver(e, item))">
+                         @ondragenter="@((e) => this.OnDraggedOver(e, item))"
+                         @ontouchstart="@((e) => this.HandleOnTouch(e, item))"
+                         @ontouchenter="@((e) => this.HandleTouchEnter(e, item))"
+                         >
                         <h4 class="enemy-name">
                             @item.Name
                         </h4>

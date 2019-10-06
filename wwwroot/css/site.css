@@ -145,9 +145,11 @@ app {
     color: #bfbfbf;
     margin: 2px;
 }
+
     .enemy-card .card-body {
         padding: 1rem;
     }
+
     .enemy-card .btn.btn-dark {
         background-color: #475e9ca8
     }
@@ -156,9 +158,9 @@ app {
         flex: 1;
     }
 
-    .enemy-card h4.status {
-        color: #36ffff;
-    }
+        .enemy-card h4.status {
+            color: #36ffff;
+        }
 
 
     .enemy-card .oi-trash {
@@ -178,10 +180,11 @@ app {
     border-radius: 10px;
     border: 1px solid #28a745;
 }
-.action-container.collapsed {
-    height: 48px;
-    overflow: hidden;
-}
+
+    .action-container.collapsed {
+        height: 48px;
+        overflow: hidden;
+    }
 
 .status-roll {
     display: flex;
@@ -199,7 +202,6 @@ app {
 }
 
 .initiative-track .btn {
-    
 }
 
 .drop-areas-container {
@@ -228,13 +230,24 @@ app {
     padding: 5px;
     flex: 1;
     border-radius: 10px;
+    cursor: grab;
 }
-h4.enemy-name {
-    font-size:1rem;
-    color:#fff;
-}
+
     .initiative-card.dragged {
+        background: #449498;
+        margin: 8px;
+        cursor: grabbing;
     }
+
+    .initiative-card:active {
+        cursor: grabbing;
+    }
+
+h4.enemy-name {
+    font-size: 1rem;
+    color: #fff;
+}
+
 
 @media (max-width: 767.98px) {
     .main .top-row {
@@ -256,7 +269,6 @@ h4.enemy-name {
 
     .container-fluid {
         height: 100vh;
-       
     }
 
     .expand-panel {

@@ -11,7 +11,7 @@ namespace BlazorApp.Services
     {
         Task<List<Enemy>> Enemies { get; }
         List<Enemy> ArenaEnemies { get; }
-        List<IHasName> InitiativeTrack { get; set; }
+        List<IAttributes> InitiativeTrack { get; set; }
 
     }
     public class EnemyService : IEnemyService
@@ -22,7 +22,7 @@ namespace BlazorApp.Services
         private List<Enemy> _enemies;
         public Task<List<Enemy>> Enemies { get; set; }
         public List<Enemy> ArenaEnemies { get; private set; }
-        public List<IHasName> InitiativeTrack { get; set; }
+        public List<IAttributes> InitiativeTrack { get; set; }
 
         public EnemyService(NavigationManager navigationManager, HttpClient httpClient)
         {
@@ -30,7 +30,7 @@ namespace BlazorApp.Services
             _http = httpClient;
             SetEnemies();
             ArenaEnemies = new List<Enemy>();
-            InitiativeTrack = new List<IHasName>();
+            InitiativeTrack = new List<IAttributes>();
         }
         private void SetEnemies()
         {
