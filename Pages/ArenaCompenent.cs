@@ -21,19 +21,19 @@ namespace BlazorApp.Pages
             ArenaEnemies = EnemyService.ArenaEnemies;
             Loading = false;         
         }
-
         public void AddEnemy(Enemy enemy)
         {
-            if (ArenaEnemies.IndexOf(enemy) == -1)
+            if (EnemyService.ArenaEnemies.IndexOf(enemy) == -1)
             {
-                ArenaEnemies.Add(enemy);
+                EnemyService.ArenaEnemies.Add(enemy);
+                EnemyService.InitiativeTrack.Add(enemy);
             }
             else
             {
-                ArenaEnemies.Remove(enemy);
-            }            
+                EnemyService.ArenaEnemies.Remove(enemy);
+                EnemyService.InitiativeTrack.Remove(enemy);
+            }        
         }
-
         public void ExpandPanel()
         {
             IsExpanded = (IsExpanded == true) ? false : true;            

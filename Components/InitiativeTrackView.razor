@@ -3,27 +3,37 @@
 @inherits InitiativeTrackComponent
 
 <div class="row">
-    @if (Enemies.Count > 0)
+    @foreach (var adventurer in Adventurers)
     {
-        <button class="btn btn-secondary" @onclick="Shuffle">Shuffle</button>
-    }
-    <div class="drop-areas-container">
-        @foreach (var enemy in Enemies)
-        {
-            <div class="drop-area" ondragover="event.preventDefault();"
-                 @ondrop="HandleDrop"
-                 @ondragenter="HandleDragEnter"
-                 @ondragleave="HandleDragLeave">
-
-                <div class="initiative-card @SetDragStyle(enemy)" draggable="true"
-                     ondragover="event.preventDefault();"
-                     @ondragstart="@((e) => this.OnBeingDragged(e, enemy))"
-                     @ondragenter="@((e) => this.OnDraggedOver(e, enemy))">
-                    <h4 class="enemy-name">
-                        @enemy.Name
-                    </h4>
-                </div>
-            </div>
+        <button class="btn btn-light"
+                @onclick="@( () => AddAdventurer(adventurer))">
+            @adventurer.Name
+            </button>
         }
-    </div>
 </div>
+
+
+@if (InitiativeTrack.Count > 0)
+{
+    <button class="btn btn-secondary" @onclick="Shuffle">Shuffle</button>
+}
+<div class="drop-areas-container">
+    @foreach (var item in InitiativeTrack)
+    {
+        <div class="drop-area" ondragover="event.preventDefault();"
+             @ondrop="HandleDrop"
+             @ondragenter="HandleDragEnter"
+             @ondragleave="HandleDragLeave">
+
+            <div class="initiative-card @SetDragStyle(item)" draggable="true"
+                 ondragover="event.preventDefault();"
+                 @ondragstart="@((e) => this.OnBeingDragged(e, item))"
+                 @ondragenter="@((e) => this.OnDraggedOver(e, item))">
+                <h4 class="enemy-name">
+                    @item.Name
+                </h4>
+            </div>
+        </div>
+    }
+</div>
+

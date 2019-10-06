@@ -1,4 +1,5 @@
-﻿using BlazorApp.Models.Enemies;
+﻿using BlazorApp.Models;
+using BlazorApp.Models.Enemies;
 using BlazorApp.Services;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
@@ -11,34 +12,53 @@ namespace BlazorApp.Components
 {
     public class InitiativeTrackComponent : ComponentBase
     {
-
+        [Inject]
+        public IEnemyService EnemyService { get; private set; }
         [Parameter]
         public List<Enemy> Enemies { get; set; }
-
-        public Enemy DraggedOver { get; set; }
-
-        public Enemy BeingDragged { get; set; }
-
+        public List<Adventurer> Adventurers { get; set; }
+        public List<IHasName> InitiativeTrack { get; set; }
+        public IHasName DraggedOver { get; set; }
+        public IHasName BeingDragged { get; set; }
         public string DraggedStyle { get; set; }
+
+        protected override void OnInitialized()
+        {   
+            Adventurers = AdventurersConstants.Adventurers;
+            InitiativeTrack = EnemyService.InitiativeTrack;
+        }
+
+        public void AddAdventurer(IHasName adventurer)
+        {
+            if (InitiativeTrack.IndexOf(adventurer) == -1)
+            {
+                InitiativeTrack.Add(adventurer);
+            }
+            else
+            {
+                InitiativeTrack.Remove(adventurer);
+            }
+        }
 
         public void Shuffle()
         {
-            var length = Enemies.Count;
+            var length = InitiativeTrack.Count;
             var maxNumber = length;
             Random random = new Random();
-            var movedToHistory = new Dictionary<int, Enemy>();
-            
+            var movedToHistory = new Dictionary<int, IHasName>();
+
             for (int i = length - 1; i > 0; i--)
             {
                 var moveOne = random.Next(0, maxNumber);
                 // We don't want the move to be the same as current index
                 // moveTwo = random.Next(0, length);  
-                if(!movedToHistory.ContainsKey(moveOne)) {
-                    var currentEnemy = Enemies[i];
-                    var moveTo = Enemies[moveOne];
-                    Enemies[moveOne] = currentEnemy;
-                    Enemies[i] = moveTo;                   
-                    movedToHistory.Add(moveOne, currentEnemy);
+                if (!movedToHistory.ContainsKey(moveOne))
+                {
+                    var currentItem = InitiativeTrack[i];
+                    var moveTo = InitiativeTrack[moveOne];
+                    InitiativeTrack[moveOne] = currentItem;
+                    InitiativeTrack[i] = moveTo;
+                    movedToHistory.Add(moveOne, currentItem);
                 }
                 maxNumber--;
             }
@@ -53,41 +73,34 @@ namespace BlazorApp.Components
 
         }
 
-        public string SetDragStyle(Enemy enemy)
+        public string SetDragStyle(IHasName hasName)
         {
-            if (enemy == BeingDragged)
+            if (hasName == BeingDragged)
             {
                 return "dragged";
             }
             return "";
         }
-        public void OnBeingDragged(DragEventArgs e, Enemy enemy)
+        public void OnBeingDragged(DragEventArgs e, IHasName hasName)
         {
             e.DataTransfer.DropEffect = "move";
-            BeingDragged = enemy;
+            BeingDragged = hasName;
         }
 
-        public void OnDraggedOver(DragEventArgs e, Enemy enemy)
+        public void OnDraggedOver(DragEventArgs e, IHasName hasName)
         {
-            DraggedOver = enemy;
+            DraggedOver = hasName;
         }
 
-
-        public async Task HandleDrop()
+        public void HandleDrop()
         {
-            var iOne = Enemies.IndexOf(BeingDragged);
-            var iTwo = Enemies.IndexOf(DraggedOver);
+            var iOne = InitiativeTrack.IndexOf(BeingDragged);
+            var iTwo = InitiativeTrack.IndexOf(DraggedOver);
             // Swap them over
-            Enemies[iOne] = DraggedOver;
-            Enemies[iTwo] = BeingDragged;
+            InitiativeTrack[iOne] = DraggedOver;
+            InitiativeTrack[iTwo] = BeingDragged;
             DraggedOver = null;
             BeingDragged = null;
-
-        }
-
-        public void Reorder(DragEventArgs e, Enemy enemy)
-        {
-
         }
     }
 }
