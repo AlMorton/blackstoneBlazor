@@ -11,29 +11,32 @@
             </button>
         }
 </div>
+<div class="container-fluid">
+    <div class="row">
+        @if (InitiativeTrack.Count > 0)
+        {
+            <button class="btn btn-secondary" @onclick="Shuffle">Shuffle</button>
+        }
+        <div class="drop-areas-container">
+            @foreach (var item in InitiativeTrack)
+            {
+                <div class="drop-area" ondragover="event.preventDefault();"
+                     @ondrop="HandleDrop"
+                     @ondragenter="HandleDragEnter"
+                     @ondragleave="HandleDragLeave">
 
-
-@if (InitiativeTrack.Count > 0)
-{
-    <button class="btn btn-secondary" @onclick="Shuffle">Shuffle</button>
-}
-<div class="drop-areas-container">
-    @foreach (var item in InitiativeTrack)
-    {
-        <div class="drop-area" ondragover="event.preventDefault();"
-             @ondrop="HandleDrop"
-             @ondragenter="HandleDragEnter"
-             @ondragleave="HandleDragLeave">
-
-            <div class="initiative-card @SetDragStyle(item)" draggable="true"
-                 ondragover="event.preventDefault();"
-                 @ondragstart="@((e) => this.OnBeingDragged(e, item))"
-                 @ondragenter="@((e) => this.OnDraggedOver(e, item))">
-                <h4 class="enemy-name">
-                    @item.Name
-                </h4>
-            </div>
+                    <div class="initiative-card @SetDragStyle(item)" draggable="true"
+                         ondragover="event.preventDefault();"
+                         @ondragstart="@((e) => this.OnBeingDragged(e, item))"
+                         @ondragenter="@((e) => this.OnDraggedOver(e, item))">
+                        <h4 class="enemy-name">
+                            @item.Name
+                        </h4>
+                    </div>
+                </div>
+            }
         </div>
-    }
+    </div>
 </div>
+
 

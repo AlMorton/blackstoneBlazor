@@ -231,6 +231,7 @@ app {
 }
 h4.enemy-name {
     font-size:1rem;
+    color:#fff;
 }
     .initiative-card.dragged {
     }
