@@ -8,6 +8,8 @@ namespace BlazorApp
     {
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSingleton<IActionsService, ActionsService>();
+
             services.AddSingleton<IEnemyService, EnemyService>();
 
             services.AddSingleton<IDiceRollService, DiceRollService>();

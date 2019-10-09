@@ -11,13 +11,13 @@ namespace BlazorApp.Models.Enemies
     public class Enemy : IAttributes
     {
         public string Name { get; set; }
-        public string CSSClass { get; set; }
+        public string CSSClass { get; set; } 
         public string Status { get; set; }
         public List<BehaviourChartColumn> BehaviourChartColumns { get; set; }        
 
         public Enemy()
         {
-
+            CSSClass = "enemy"; 
         }    
     }
 }

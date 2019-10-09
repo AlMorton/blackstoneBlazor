@@ -7006,8 +7006,8 @@ button.bg-dark:focus {
   overflow: hidden !important;
 }
 
-.position-{
-  position: !important;
+.position-static {
+  position: static !important;
 }
 
 .position-relative {
@@ -9850,6 +9850,9 @@ app {
   border: 1px solid #28a745;
   margin: 5px;
 }
+.drop-area.enemy {
+  border-color: #ff0986ba;
+}
 
 .initiative-card {
   background-image: linear-gradient(to right, #0e2739ab, #00dcff59);
@@ -9858,6 +9861,9 @@ app {
   flex: 1;
   border-radius: 10px;
   cursor: grab;
+}
+.initiative-card.enemy {
+  background-image: linear-gradient(to right, #0e2739ab, #ff006a59);
 }
 .initiative-card.dragged {
   background: #449498;

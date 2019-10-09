@@ -52,39 +52,7 @@ namespace Tests
             File.WriteAllText($"{root}wwwroot\\enemy-data\\enemies.json", newFileContent);
         }
 
-        [Test]
-        public void CreateJSONBehaviourFile()
-        {
-            var dir = Directory.GetCurrentDirectory();
-            var root = dir.Substring(dir.IndexOf("Test"));
-            root = dir.Split(root)[0];
-            var files = Directory.CreateDirectory($"{root}wwwroot\\enemy-behaviour");
-
-            var constants = new Constants();
-
-            var c = new Constants();
-            var fields = c.GetType().GetFields();
-            foreach (var field in fields)
-            {
-                var d = (Dictionary<string, string>)field.GetValue(c);
-            }
-
-            var behaviours = constants.Actions.Select(a => new BlazorApp.Models.Action
-            {
-                Name = a.Key,
-                Description = a.Value
-            }).ToList();
-
-            var json = JsonConvert.SerializeObject(behaviours);
-
-            string fileName = $"{files.FullName}\\behaviours.json";
-
-            var fs = File.Create($"{fileName}");
-            fs.Dispose();
-            File.WriteAllText($"{fileName}", json);
-
-        }
-
+      
         [Test]
         public void JsonTest()
         {
@@ -98,7 +66,7 @@ namespace Tests
 
             var x = testSubject.GetStatus(diceRoll);
 
-            Assert.AreEqual(EnemyActions.Charge, x);
+            Assert.AreEqual(EnemyActionsTest.Charge, x);
 
         }
 
@@ -112,7 +80,7 @@ namespace Tests
 
     }
 
-    public static class EnemyActions
+    public static class EnemyActionsTest
     {
         public static string Hold { get; } = "Hold";
         public static string Sneak { get; set; } = "Sneak";

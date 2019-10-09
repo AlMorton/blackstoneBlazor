@@ -71,14 +71,17 @@ namespace BlazorApp.Components
 
         }
 
+        public string SetToCSSStyle(IAttributes item)
+        {
+            return item.CSSClass;
+        }
+
         public string SetDragStyle(IAttributes item)
         {
             if (item == BeingDragged)
-            {
-                item.CSSClass = "dragged";
+            {            
                 return "dragged";
-            }
-            item.CSSClass = "";
+            }            
             return "";
         }
         public void OnBeingDragged(DragEventArgs e, IAttributes item)

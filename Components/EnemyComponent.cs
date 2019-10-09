@@ -29,6 +29,8 @@ namespace BlazorApp.Components
 
         [Inject]
         public IDiceRollService DiceRollService { get; private set; }
+        [Inject]
+        public IActionsService ActionsService { get; set; }
 
         public EventCallback<MouseEventArgs> SetStatus(BehaviourChartColumn behaviourChartColumn)
         {
@@ -37,8 +39,7 @@ namespace BlazorApp.Components
             Enemy.Status = behaviourChartColumn.GetStatus(DiceRoll);
 
             string action = "";
-            var constants = new Constants();
-            constants.Actions.TryGetValue(Enemy.Status, out action);
+            ActionsService.Actions.TryGetValue(Enemy.Status, out action);
             Action = action;
 
             return new EventCallback<MouseEventArgs>();

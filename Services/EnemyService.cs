@@ -17,7 +17,7 @@ namespace BlazorApp.Services
     public class EnemyService : IEnemyService
     {
         private readonly HttpClient _http;
-        private readonly NavigationManager _NavigationManager;
+        private readonly NavigationManager _navigationManager;
 
         private List<Enemy> _enemies;
         public Task<List<Enemy>> Enemies { get; set; }
@@ -26,7 +26,7 @@ namespace BlazorApp.Services
 
         public EnemyService(NavigationManager navigationManager, HttpClient httpClient)
         {
-            _NavigationManager = navigationManager;
+            _navigationManager = navigationManager;
             _http = httpClient;
             SetEnemies();
             ArenaEnemies = new List<Enemy>();
@@ -39,7 +39,7 @@ namespace BlazorApp.Services
 
         private async Task<List<Enemy>> Del()
         {
-            var baseUri = _NavigationManager.BaseUri;
+            var baseUri = _navigationManager.BaseUri;
 
             if (_enemies is null)
             {

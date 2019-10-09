@@ -19,12 +19,12 @@
     <div class="drop-areas-container">
         @foreach (var item in InitiativeTrack)
         {
-            <div class="drop-area" ondragover="event.preventDefault();"
+            <div class="drop-area @SetToCSSStyle(item)" ondragover="event.preventDefault();"
                  @ondrop="HandleDrop"
                  @ondragenter="HandleDragEnter"
                  @ondragleave="HandleDragLeave">
 
-                <div class="initiative-card @SetDragStyle(item)" draggable="true"
+                <div class="initiative-card @SetDragStyle(item) @SetToCSSStyle(item)" draggable="true"
                      ondragover="event.preventDefault();"
                      @ondragstart="@((e) => this.OnBeingDragged(e, item))"
                      @ondragenter="@((e) => this.OnDraggedOver(e, item))"

@@ -219,6 +219,10 @@ app {
     border-radius: 10px;
     border: 1px solid #28a745;
     margin: 5px;
+
+    &.enemy {
+        border-color: #ff0986ba;
+    }
 }
 
 .initiative-card {
@@ -228,6 +232,10 @@ app {
     flex: 1;
     border-radius: 10px;
     cursor: grab;
+
+    &.enemy {
+        background-image: linear-gradient(to right, #0e2739ab, #ff006a59);
+    }
 
     &.dragged {
         background: #449498;
