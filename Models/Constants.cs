@@ -2,9 +2,10 @@
 
 namespace BlazorApp.Models
 {
-    public static class Constants
-    {
-        public static Dictionary<string, string> Actions = new Dictionary<string, string>
+    public class Constants
+    {  
+
+        public Dictionary<string, string> Actions = new Dictionary<string, string>
         {
             { "Advance", "Move towards the closest explorer. Then attack the closest explorer that is in range of and visible to this hostile."
             },
@@ -22,7 +23,7 @@ namespace BlazorApp.Models
             }
         };
 
-        public static Dictionary<string, string> RoguePsyker = new Dictionary<string, string>
+        public Dictionary<string, string> RoguePsyker = new Dictionary<string, string>
         {
             {"Annihilate", "Place the empowered marker beside the Rogue Psyker. Then attack an explorer that is adjacent and visible to this hostile. Re-roll failed attack rolls for that attack. The Rogue Psyker remains empowered until they suffer a wound or grievous wound."
             },
@@ -34,26 +35,26 @@ namespace BlazorApp.Models
             }
         };
 
-        public static Dictionary<string, string> SpindleDrone = new Dictionary<string, string>
+        public Dictionary<string, string> SpindleDrone = new Dictionary<string, string>
         {
             {"Alert", "Increase the threat level by 1 (see the Threat Level special rule on the other side of this reference card) and then take an Onslaught action. If the threat level is 3, take an Onslaught action and re-roll failed attack rolls for that action instead."
             },           
         };
-        public static Dictionary<string, string> TraitorGuard = new Dictionary<string, string>
+        public Dictionary<string, string> TraitorGuard = new Dictionary<string, string>
         {
             {"Fury", "Take an Onslaught action. Re-roll failed attack rolls for that action."
             },
             {"Rush", "Move towards the closest explorer. Then take a Charge action."
             },
         };
-        public static Dictionary<string, string> ChaosBeastman = new Dictionary<string, string>
+        public Dictionary<string, string> ChaosBeastman = new Dictionary<string, string>
         {
             {"Fury", "Take an Onslaught action. Re-roll failed attack rolls for that action."
             },
             {"Rush", "Move towards the closest explorer. Then take a Charge action."
             },
         };
-        public static Dictionary<string, string> NegavoltCultist = new Dictionary<string, string>
+        public Dictionary<string, string> NegavoltCultist = new Dictionary<string, string>
         {
             {"Fury", "Take an Onslaught action. Re-roll failed attack rolls for that action."
             },
@@ -62,21 +63,21 @@ namespace BlazorApp.Models
             {"Rush", "Move towards the closest explorer. Then take a Charge action."
             }
         };
-        public static Dictionary<string, string> UrGhul= new Dictionary<string, string>
+        public Dictionary<string, string> UrGhul= new Dictionary<string, string>
         {
             {"Pounce", " If there is an explorer adjacent and visible to this Ur-Ghul, take an Onslaught action. Otherwise, take a Charge action. Re-roll failed attack rolls for whichever action."
             },            
             {"Rush", "Move towards the closest explorer. Then take a Charge action."
             }
         };
-        public static Dictionary<string, string> ChaosSpaceMarine = new Dictionary<string, string>
+        public Dictionary<string, string> ChaosSpaceMarine = new Dictionary<string, string>
         {
             {"Rapid Fire", "Take an Onslaught action. Re-roll failed attack rolls for that action."
             },
             {"Rush", "Move towards the closest explorer. Then take a Charge action."
             }
         };
-        public static Dictionary<string, string> ObsidiusMallex = new Dictionary<string, string>
+        public Dictionary<string, string> ObsidiusMallex = new Dictionary<string, string>
         {
             {"Fury", "Take an Onslaught action. Re-roll failed attack rolls for that action."
             },

@@ -2,45 +2,42 @@
 @using BlazorApp.Services
 @inherits InitiativeTrackComponent
 
-<div class="row">   
+<div class="row enemy-selection">
     @foreach (var adventurer in Adventurers)
     {
         <button class="btn btn-light"
                 @onclick="@( () => AddAdventurer(adventurer))">
             @adventurer.Name
-            </button>
-        }
+        </button>
+    }
 </div>
-<div class="container-fluid">
-    <div class="row">
-        @if (InitiativeTrack.Count > 0)
+<div class="row">
+    @if (InitiativeTrack.Count > 0)
+    {
+        <button class="shuffle-button btn btn-secondary" @onclick="Shuffle">Shuffle</button>
+    }
+    <div class="drop-areas-container">
+        @foreach (var item in InitiativeTrack)
         {
-            <button class="btn btn-secondary" @onclick="Shuffle">Shuffle</button>
-        }
-        <div class="drop-areas-container">
-            @foreach (var item in InitiativeTrack)
-            {
-                <div class="drop-area" ondragover="event.preventDefault();"
-                     @ondrop="HandleDrop"
-                     @ondragenter="HandleDragEnter"
-                     @ondragleave="HandleDragLeave"                     
-                     >
+            <div class="drop-area" ondragover="event.preventDefault();"
+                 @ondrop="HandleDrop"
+                 @ondragenter="HandleDragEnter"
+                 @ondragleave="HandleDragLeave">
 
-                    <div class="initiative-card @SetDragStyle(item)" draggable="true"
-                         ondragover="event.preventDefault();"
-                         @ondragstart="@((e) => this.OnBeingDragged(e, item))"
-                         @ondragenter="@((e) => this.OnDraggedOver(e, item))"
-                         @ontouchstart="@((e) => this.HandleOnTouch(e, item))"
-                         @ontouchenter="@((e) => this.HandleTouchEnter(e, item))"
-                         >
-                        <h4 class="enemy-name">
-                            @item.Name
-                        </h4>
-                    </div>
+                <div class="initiative-card @SetDragStyle(item)" draggable="true"
+                     ondragover="event.preventDefault();"
+                     @ondragstart="@((e) => this.OnBeingDragged(e, item))"
+                     @ondragenter="@((e) => this.OnDraggedOver(e, item))"
+                     @ontouchstart="@((e) => this.HandleOnTouch(e, item))"
+                     @ontouchenter="@((e) => this.HandleTouchEnter(e, item))">
+                    <h4 class="enemy-name">
+                        @item.Name
+                    </h4>
                 </div>
-            }
-        </div>
+            </div>
+        }
     </div>
 </div>
+
 
 

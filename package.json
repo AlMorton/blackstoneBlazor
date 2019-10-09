@@ -1,0 +1,24 @@
+{
+  "name": "blackstone-blazor-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "bootstrap": "^4.3.1",
+    "sass": "^1.23.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AlMorton/blackstoneBlazor.git"
+  },
+  "author": "Al",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AlMorton/blackstoneBlazor/issues"
+  },
+  "homepage": "https://github.com/AlMorton/blackstoneBlazor#readme"
+}

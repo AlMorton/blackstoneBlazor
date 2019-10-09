@@ -37,7 +37,8 @@ namespace BlazorApp.Components
             Enemy.Status = behaviourChartColumn.GetStatus(DiceRoll);
 
             string action = "";
-            Constants.Actions.TryGetValue(Enemy.Status, out action);
+            var constants = new Constants();
+            constants.Actions.TryGetValue(Enemy.Status, out action);
             Action = action;
 
             return new EventCallback<MouseEventArgs>();
