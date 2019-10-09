@@ -163,7 +163,7 @@ app {
         border-radius: 10px;
         border: 1px solid #28a745;
 
-        .collapsed {
+        &.collapsed {
             height: 48px;
             overflow: hidden;
         }

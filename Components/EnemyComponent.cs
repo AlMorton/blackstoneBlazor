@@ -21,9 +21,7 @@ namespace BlazorApp.Components
         [Parameter]
         public bool Removable { get; set; }
 
-        public int DiceRoll { get; set; }     
-
-        public string Action { get; set; }
+        public int DiceRoll { get; set; }            
 
         public bool IsCollapsed { get; private set; }        
 
@@ -40,7 +38,7 @@ namespace BlazorApp.Components
 
             string action = "";
             ActionsService.Actions.TryGetValue(Enemy.Status, out action);
-            Action = action;
+            Enemy.Action = action;
 
             return new EventCallback<MouseEventArgs>();
         }           
