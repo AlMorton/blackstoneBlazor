@@ -2,7 +2,8 @@
 @using BlazorApp.Services
 @inherits InitiativeTrackComponent
 
-<div class="row enemy-selection">
+<div class="row expand-panel-control" @onclick="ExpandPanelController.ExpandPanel"><span>Select Players</span></div>
+<div class="row enemy-selection @(ExpandPanelController.IsExpanded ? "collapsed" : "expanded")">
     @foreach (var adventurer in Adventurers)
     {
         <button class="btn btn-light"

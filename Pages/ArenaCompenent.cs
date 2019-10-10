@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
 using BlazorApp.Services;
 using BlazorApp.Models.Enemies;
+using BlazorApp.UIControllers;
 
 namespace BlazorApp.Pages
 {
@@ -10,10 +11,12 @@ namespace BlazorApp.Pages
     {
         [Inject]
         public IEnemyService EnemyService { get; private set; }
+        [Inject]
+        public IExpandPanelController ExpandPanelController { get; set; }
         public List<Enemy> Enemies { get; set; } = new List<Enemy>();
         public List<Enemy> ArenaEnemies { get; set; } = new List<Enemy>();
         public bool Loading { get; set; }
-        public bool IsExpanded { get; private set; } 
+        
         protected override async Task OnInitializedAsync()
         {
             Loading = true;
@@ -34,9 +37,6 @@ namespace BlazorApp.Pages
                 EnemyService.InitiativeTrack.Remove(enemy);
             }        
         }
-        public void ExpandPanel()
-        {
-            IsExpanded = (IsExpanded == true) ? false : true;            
-        }
+        
     }
 }

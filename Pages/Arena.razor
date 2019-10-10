@@ -4,27 +4,26 @@
 @page "/arena"
 @inherits ArenaCompenent
 
-<div class="container-fluid">
-    @if (Loading)
-    {
-        <h2>Loading.......</h2>
-    }
-    <div class="row enemy-selection @(IsExpanded ? "collapsed" : "expanded")">
-
-        @foreach (var enemy in Enemies)
+    <div class="container-fluid">
+        @if (Loading)
         {
-            <button class="btn btn-dark" @onclick="@( () => AddEnemy(enemy))">@enemy.Name</button>
+            <h2>Loading.......</h2>
         }
+        <div class="row expand-panel-control" @onclick="ExpandPanelController.ExpandPanel"><span>Select Enemies</span></div>
+        <div class="row enemy-selection @(ExpandPanelController.IsExpanded ? "collapsed" : "expanded")">
 
+            @foreach (var enemy in Enemies)
+            {
+                <button class="btn btn-dark" @onclick="@( () => AddEnemy(enemy))">@enemy.Name</button>
+            }
+
+        </div>
+        <InitiativeTrackView Enemies="ArenaEnemies" />
+
+        <div class="row">
+            @foreach (var enemy in ArenaEnemies)
+            {
+                <EnemyView Enemy="enemy" Removable="true" OnClick="(e => AddEnemy(enemy))" />
+            }
+        </div>
     </div>
-    <div class="expand-panel" @onclick="ExpandPanel"><span class="oi oi-collapse-down"></span></div>
-
-    <InitiativeTrackView Enemies="ArenaEnemies" />
-
-    <div class="row">
-        @foreach (var enemy in ArenaEnemies)
-        {
-            <EnemyView Enemy="enemy" Removable="true" OnClick="(e => AddEnemy(enemy))" />
-        }
-    </div>
-</div>

@@ -1,6 +1,8 @@
 ﻿using BlazorApp.Models;
 using BlazorApp.Models.Enemies;
+using BlazorApp.Pages;
 using BlazorApp.Services;
+using BlazorApp.UIControllers;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using System;
@@ -14,6 +16,10 @@ namespace BlazorApp.Components
     {
         [Inject]
         public IEnemyService EnemyService { get; private set; }
+
+        [Inject]
+        public IExpandPanelController ExpandPanelController { get; set; }
+
         [Parameter]
         public List<Enemy> Enemies { get; set; }
         public List<Adventurer> Adventurers { get; set; }

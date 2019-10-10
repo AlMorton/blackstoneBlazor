@@ -1,4 +1,6 @@
+using BlazorApp.Pages;
 using BlazorApp.Services;
+using BlazorApp.UIControllers;
 using Microsoft.AspNetCore.Components.Builder;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -13,6 +15,7 @@ namespace BlazorApp
             services.AddSingleton<IEnemyService, EnemyService>();
 
             services.AddSingleton<IDiceRollService, DiceRollService>();
+            services.AddTransient<IExpandPanelController, ExpandPanelController>();
 
             services.AddScoped<IDice, Dice>(x => {
                 return new Dice(20);
