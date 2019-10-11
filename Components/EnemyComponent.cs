@@ -45,12 +45,11 @@ namespace BlazorApp.Components
         
         public void Shrink()
         {
-            IsCollapsed = (IsCollapsed) ? false : true;
+            IsCollapsed = !IsCollapsed;
         }
 
         public DragEventArgs HandleDragStart(DragEventArgs dragEvent)
-        {
-            Console.WriteLine(dragEvent);
+        {   
             return dragEvent;
         }
     }

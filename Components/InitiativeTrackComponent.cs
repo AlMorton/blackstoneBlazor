@@ -55,8 +55,7 @@ namespace BlazorApp.Components
             for (int i = length - 1; i > 0; i--)
             {
                 var moveOne = random.Next(0, maxNumber);
-                // We don't want the move to be the same as current index
-                // moveTwo = random.Next(0, length);  
+               
                 if (!movedToHistory.ContainsKey(moveOne))
                 {
                     var currentItem = InitiativeTrack[i];
