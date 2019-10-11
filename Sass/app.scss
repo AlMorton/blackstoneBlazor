@@ -1,4 +1,7 @@
-﻿body {
+﻿@import '_functions.scss';
+@import '_variables.scss';
+
+body {
     font-family: 'Audiowide', cursive;
     background: #000;
     color: #bfbfbf;
@@ -185,15 +188,16 @@ app {
 .expand-panel-control {
     display: flex;
     width: auto;
+    height: 40px;
     align-content: center;
     justify-content: center;
-    background-image: linear-gradient(180deg, #052767 0%, #000 100%);
-    color: white;   
+    background-image: linear-gradient(180deg, $third-color 0%, #000 100%);
+    color: white;
 }
 
 @keyframes collapse {
     from {
-        height: auto;
+        height: 60px;
     }
 
     to {
@@ -207,12 +211,13 @@ app {
     }
 
     to {
-        height: auto;
+        height: 60px;
     }
 }  
 
 .row {
     &.enemy-selection {
+
         .btn {
             margin: 2px;
         }
@@ -251,7 +256,7 @@ app {
     max-width: 150px;
     flex-direction: row;
     justify-content: left;
-    min-height: 150px;
+    min-height: 70px;
     border-radius: 10px;
     border: 1px solid #28a745;
     margin: 5px;
@@ -313,26 +318,7 @@ h4.enemy-name {
 
     .expand-panel-control {
         height:30px;
-    }
-    @keyframes collapse {
-        from {
-            height: 100px;
-        }
-
-        to {
-            height: 0px;
-        }
-    }
-
-    @keyframes expand {
-        from {
-            height: 0px;
-        }
-
-        to {
-            height: 100px;
-        }
-    }    
+    }   
 }
 
 @media (min-width: 768px) {

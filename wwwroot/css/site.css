@@ -9803,7 +9803,7 @@ app {
   border-radius: 10px;
   border: 1px solid #28a745;
 }
-.enemy-card .action-container .collapsed {
+.enemy-card .action-container.collapsed {
   height: 48px;
   overflow: hidden;
 }
@@ -9818,12 +9818,43 @@ app {
   overflow: hidden;
 }
 
-.expand-panel {
-  display: none;
+.expand-panel-control {
+  display: flex;
+  width: auto;
+  height: 40px;
+  align-content: center;
+  justify-content: center;
+  background-image: linear-gradient(180deg, #00dcff59 0%, #000 100%);
+  color: white;
 }
 
+@keyframes collapse {
+  from {
+    height: 60px;
+  }
+  to {
+    height: 0px;
+  }
+}
+@keyframes expand {
+  from {
+    height: 0px;
+  }
+  to {
+    height: 60px;
+  }
+}
 .row.enemy-selection .btn {
   margin: 2px;
+}
+.row.enemy-selection.collapsed {
+  height: 0;
+  overflow: hidden;
+  animation: collapse 0.2s ease-out;
+}
+.row.enemy-selection.expanded {
+  overflow: hidden;
+  animation: expand 0.2s ease-out;
 }
 
 .shuffle-button {
@@ -9845,7 +9876,7 @@ app {
   max-width: 150px;
   flex-direction: row;
   justify-content: left;
-  min-height: 150px;
+  min-height: 70px;
   border-radius: 10px;
   border: 1px solid #28a745;
   margin: 5px;
@@ -9899,41 +9930,8 @@ h4.enemy-name {
     height: 100vh;
   }
 
-  .expand-panel {
-    height: 40px;
-    margin-top: 5px;
-    width: 100%;
-    display: flex;
-    color: #144545;
-    justify-content: center;
-    background-image: linear-gradient(180deg, #052767 0%, #000 100%);
-    font-size: 40px;
-  }
-
-  @keyframes collapse {
-    from {
-      height: 100px;
-    }
-    to {
-      height: 0px;
-    }
-  }
-  @keyframes expand {
-    from {
-      height: 0px;
-    }
-    to {
-      height: 100px;
-    }
-  }
-  .row.enemy-selection .collapsed {
-    height: 0;
-    overflow: hidden;
-    animation: collapse 0.5s ease-out;
-  }
-  .row.enemy-selection .expanded {
-    animation: expand 0.5s ease-out;
-    overflow: hidden;
+  .expand-panel-control {
+    height: 30px;
   }
 }
 @media (min-width: 768px) {
