@@ -296,7 +296,22 @@ h4.enemy-name {
 
 .modal {
     &.show {
-        display:flex;
+        display: flex;
+    }
+
+    .modal-content {
+        background-image: linear-gradient(180deg, #0e2739ab, #00b3d0fa);
+        background-color: #0e2739ab;
+    }
+
+    .close {
+        float: right;
+        font-size: 2rem;
+        font-weight: 700;
+        line-height: 1;
+        color: #f8f9fa;
+        text-shadow: 0 1px 0 #383d41;
+        opacity: 0.5;
     }
 }
 

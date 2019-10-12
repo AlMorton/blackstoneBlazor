@@ -22,7 +22,7 @@ namespace BlazorApp.Pages
         public ModalDTO<Enemy> ModalDTO { get; set; }
         protected override async Task OnInitializedAsync()
         {
-            ModalDTO = new ModalDTO<Enemy>(this.AddEnemy);
+            ModalDTO = new ModalDTO<Enemy>(this.AddEnemy, this.StateHasChanged);
             Loading = true;
             Enemies = await EnemyService.Enemies;
             ArenaEnemies = EnemyService.ArenaEnemies;
@@ -31,6 +31,7 @@ namespace BlazorApp.Pages
 
         public void AddEnemy(Enemy enemy)
         {
+            Console.WriteLine("Add enemy called");
             if (EnemyService.ArenaEnemies.IndexOf(enemy) == -1)
             {
                 EnemyService.ArenaEnemies.Add(enemy);

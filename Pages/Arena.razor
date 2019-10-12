@@ -14,11 +14,10 @@
 
         @foreach (var enemy in Enemies)
         {
-            <button class="btn btn-dark" 
-                    @onclick="@(() => ModalDTO.ToggleModal(enemy))" 
-                   
-                    >
-        @enemy.Name</button>
+            <button class="btn btn-dark"
+                    @onclick="@(() => ModalDTO.ToggleModal(enemy))">
+                @enemy.Name
+            </button>
         }
 
     </div>
@@ -31,5 +30,7 @@
         }
     </div>
 </div>
-
-<ModalView_ ModalDTO="ModalDTO" />
+@if (ModalDTO.Data != null)
+{
+    <ModalView_ ModalDTO="ModalDTO" />
+}

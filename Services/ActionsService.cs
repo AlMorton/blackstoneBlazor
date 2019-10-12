@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
-using Action = BlazorApp.Models.Action;
+using Action = BlazorApp.Models.EnemyAction;
 
 namespace BlazorApp.Services
 {

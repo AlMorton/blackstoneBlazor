@@ -12,6 +12,7 @@ namespace BlazorApp.Services
         Task<List<Enemy>> Enemies { get; }
         List<Enemy> ArenaEnemies { get; }
         List<IAttributes> InitiativeTrack { get; set; }
+        Dictionary<int, List<Enemy>> EnemyGroups { get; set; }
 
     }
     public class EnemyService : IEnemyService
@@ -22,6 +23,7 @@ namespace BlazorApp.Services
         private List<Enemy> _enemies;
         public Task<List<Enemy>> Enemies { get; set; }
         public List<Enemy> ArenaEnemies { get; private set; }
+        public Dictionary<int, List<Enemy>> EnemyGroups { get; set; }
         public List<IAttributes> InitiativeTrack { get; set; }
 
         public EnemyService(NavigationManager navigationManager, HttpClient httpClient)
@@ -31,6 +33,7 @@ namespace BlazorApp.Services
             SetEnemies();
             ArenaEnemies = new List<Enemy>();
             InitiativeTrack = new List<IAttributes>();
+            SetupGroups();
         }
         private void SetEnemies()
         {
@@ -47,6 +50,17 @@ namespace BlazorApp.Services
             }
 
             return this._enemies;
-        }        
+        }
+        
+        private void SetupGroups()
+        {
+            EnemyGroups = new Dictionary<int, List<Enemy>>();
+            for (int i = 1; i < 4; i++)
+            {
+                EnemyGroups.Add(i, new List<Enemy>());
+            }
+        }
+
+
     }
 }

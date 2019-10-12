@@ -16,11 +16,16 @@ namespace BlazorApp.Components
         public Enemy Enemy { get; set; }
 
         [Inject]
-        public IEnemyService EnemyService { get; set; }
+        public IEnemyService EnemyService { get; set; }        
 
         public void Close()
         {
-            ModalDTO.ShowModal = "";
+            ModalDTO.SetShowModal();
+            
+        }
+        public async Task SaveAsync(MouseEventArgs arg)
+        {              
+            await ModalDTO.EventCallback.InvokeAsync(arg);
         }
     }
 }
