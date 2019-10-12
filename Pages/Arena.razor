@@ -4,26 +4,32 @@
 @page "/arena"
 @inherits ArenaCompenent
 
-    <div class="container-fluid">
-        @if (Loading)
+<div class="container-fluid">
+    @if (Loading)
+    {
+        <h2>Loading.......</h2>
+    }
+    <div class="row expand-panel-control" @onclick="ExpandPanelController.ExpandPanel"><span>Select Enemies</span></div>
+    <div class="row enemy-selection @(ExpandPanelController.IsExpanded ? "collapsed" : "expanded")">
+
+        @foreach (var enemy in Enemies)
         {
-            <h2>Loading.......</h2>
+            <button class="btn btn-dark" 
+                    @onclick="@(() => ModalDTO.ToggleModal(enemy))" 
+                   
+                    >
+        @enemy.Name</button>
         }
-        <div class="row expand-panel-control" @onclick="ExpandPanelController.ExpandPanel"><span>Select Enemies</span></div>
-        <div class="row enemy-selection @(ExpandPanelController.IsExpanded ? "collapsed" : "expanded")">
 
-            @foreach (var enemy in Enemies)
-            {
-                <button class="btn btn-dark" @onclick="@( () => AddEnemy(enemy))">@enemy.Name</button>
-            }
-
-        </div>
-        <InitiativeTrackView Enemies="ArenaEnemies" />
-
-        <div class="row">
-            @foreach (var enemy in ArenaEnemies)
-            {
-                <EnemyView Enemy="enemy" Removable="true" OnClick="(e => AddEnemy(enemy))" />
-            }
-        </div>
     </div>
+    <InitiativeTrackView Enemies="ArenaEnemies" />
+
+    <div class="row">
+        @foreach (var enemy in ArenaEnemies)
+        {
+            <EnemyView Enemy="enemy" Removable="true" OnClick="(e => AddEnemy(enemy))" />
+        }
+    </div>
+</div>
+
+<ModalView_ ModalDTO="ModalDTO" />

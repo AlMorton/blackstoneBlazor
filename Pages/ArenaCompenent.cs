@@ -4,6 +4,9 @@ using Microsoft.AspNetCore.Components;
 using BlazorApp.Services;
 using BlazorApp.Models.Enemies;
 using BlazorApp.UIControllers;
+using System;
+using Microsoft.AspNetCore.Components.Web;
+using BlazorApp.Models;
 
 namespace BlazorApp.Pages
 {
@@ -15,15 +18,17 @@ namespace BlazorApp.Pages
         public IExpandPanelController ExpandPanelController { get; set; }
         public List<Enemy> Enemies { get; set; } = new List<Enemy>();
         public List<Enemy> ArenaEnemies { get; set; } = new List<Enemy>();
-        public bool Loading { get; set; }
-        
+        public bool Loading { get; set; }     
+        public ModalDTO<Enemy> ModalDTO { get; set; }
         protected override async Task OnInitializedAsync()
         {
+            ModalDTO = new ModalDTO<Enemy>(this.AddEnemy);
             Loading = true;
             Enemies = await EnemyService.Enemies;
             ArenaEnemies = EnemyService.ArenaEnemies;
-            Loading = false;         
-        }
+            Loading = false;            
+        }       
+
         public void AddEnemy(Enemy enemy)
         {
             if (EnemyService.ArenaEnemies.IndexOf(enemy) == -1)
@@ -35,8 +40,8 @@ namespace BlazorApp.Pages
             {
                 EnemyService.ArenaEnemies.Remove(enemy);
                 EnemyService.InitiativeTrack.Remove(enemy);
-            }        
+            }
         }
-        
+
     }
 }
