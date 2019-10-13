@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Components;
 using BlazorApp.Models.Enemies;
 using BlazorApp.UIControllers;
+using System.Linq;
 
 namespace BlazorApp.Components
 {
@@ -11,5 +12,13 @@ namespace BlazorApp.Components
 
         [Inject]
         public IExpandPanelController ExpandPanelController { get; set; }
+
+        public void CollapseExpand()
+        {
+            if(EnemyGroup.Enemies.Any())
+            {
+                ExpandPanelController.ExpandPanel();
+            }            
+        }
     }
 }

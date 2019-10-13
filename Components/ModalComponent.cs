@@ -26,6 +26,7 @@ namespace BlazorApp.Components
             var t = new Task(() =>
             {
                 Group = ModalDTO.Data;
+                this.StateHasChanged();
             });
             t.Start();
             return base.OnParametersSetAsync();

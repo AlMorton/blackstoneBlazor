@@ -1,7 +1,7 @@
 ﻿@using BlazorApp.Components
 @using BlazorApp.Services
 @inherits EnemyGroupComponent
-<div class="row expand-panel-control" @onclick="ExpandPanelController.ExpandPanel">
+<div class="row expand-panel-control" @onclick="CollapseExpand">
     <span>@EnemyGroup.Name</span>
 </div>
 <div class="row enemy-selection @(ExpandPanelController.IsExpanded ? "collapsed" : "expanded")">
