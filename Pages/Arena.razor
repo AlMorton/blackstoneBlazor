@@ -11,25 +11,30 @@
     }
     <div class="row expand-panel-control" @onclick="ExpandPanelController.ExpandPanel"><span>Select Groups</span></div>
     <div class="row enemy-selection @(ExpandPanelController.IsExpanded ? "collapsed" : "expanded")">
-        
+
         @foreach (var group in EnemyService.EnemyGroups.Keys)
         {
-        <button class="btn btn-dark"
-                @onclick="@(() => ModalDTO.ToggleModal(group))">
-            @group
-        </button>
-        }  
+            <button class="btn btn-dark"
+                    @onclick="@(() => ToggleModal(group))">
+                @group
+            </button>
+        }
 
     </div>
     <InitiativeTrackView Enemies="ArenaEnemies" />
     <div class="row">
         @foreach (var group in EnemyService.EnemyGroups)
         {
+            <p>@group.Key</p>
             @foreach (var enemy in group.Value)
             {
-                <EnemyView Enemy="enemy" Removable="true" OnClick="(e => AddEnemy(enemy))" />
+                <EnemyView Enemy="enemy" Removable="true" />
             }
         }
     </div>
 </div>
-<ModalView_ ModalDTO="ModalDTO" />
+@if (ModalDTO != null)
+{
+    <ModalView_ ModalDTO="ModalDTO" />
+}
+

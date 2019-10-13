@@ -6,7 +6,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Add To Group @ModalDTO.Data</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Add To Group @ModalDTO.Data.Key</h5>
                 <button type="button" @onclick="Close" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -15,9 +15,8 @@
                 <div class="row enemy-selection">
                     @foreach (var enemy in Enemies)
                     {
-                        <button class="btn btn-dark" 
-                                @onclick="@(() => EnemyService.AddEnemyToGroup(ModalDTO.Data, enemy))"
-                         >
+                        <button class="btn btn-dark @IsInGroup(enemy)" 
+                                @onclick="@(() => AddEnemyToGroup(enemy))">
                             @enemy.Name
                         </button>
                     }
