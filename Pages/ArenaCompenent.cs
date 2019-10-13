@@ -19,10 +19,10 @@ namespace BlazorApp.Pages
         public List<Enemy> Enemies { get; set; } = new List<Enemy>();
         public List<Enemy> ArenaEnemies { get; set; } = new List<Enemy>();
         public bool Loading { get; set; }     
-        public ModalDTO<Enemy> ModalDTO { get; set; }
+        public ModalDTO<int> ModalDTO { get; set; }
         protected override async Task OnInitializedAsync()
         {
-            ModalDTO = new ModalDTO<Enemy>(this.AddEnemy, this.StateHasChanged);
+            ModalDTO = new ModalDTO<int>(this.StateHasChanged);
             Loading = true;
             Enemies = await EnemyService.Enemies;
             ArenaEnemies = EnemyService.ArenaEnemies;

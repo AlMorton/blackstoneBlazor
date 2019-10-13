@@ -14,6 +14,7 @@ namespace BlazorApp.Services
         List<IAttributes> InitiativeTrack { get; set; }
         Dictionary<int, List<Enemy>> EnemyGroups { get; set; }
 
+        void AddEnemyToGroup(int groupNumber, Enemy enemy);
     }
     public class EnemyService : IEnemyService
     {
@@ -34,6 +35,21 @@ namespace BlazorApp.Services
             ArenaEnemies = new List<Enemy>();
             InitiativeTrack = new List<IAttributes>();
             SetupGroups();
+        }
+
+        public void AddEnemyToGroup(int groupNumber, Enemy enemy)
+        {            
+                Console.WriteLine("Add enemy called");
+            if (EnemyGroups[groupNumber].IndexOf(enemy) == -1)
+            {
+                EnemyGroups[groupNumber].Add(enemy);
+                //EnemyService.InitiativeTrack.Add(enemy);
+            }
+            else
+            {
+                EnemyGroups[groupNumber].Remove(enemy);
+                //EnemyService.InitiativeTrack.Remove(enemy);
+            }
         }
         private void SetEnemies()
         {

@@ -5,27 +5,34 @@ using System.Threading.Tasks;
 using BlazorApp.Models.Enemies;
 using BlazorApp.Services;
 using BlazorApp.Models;
+using System.Collections.Generic;
 
 namespace BlazorApp.Components
 {
     public class ModalComponent : ComponentBase
     {
         [Parameter]
-        public ModalDTO<Enemy> ModalDTO { get; set; } 
-        
-        public Enemy Enemy { get; set; }
+        public ModalDTO<int> ModalDTO { get; set; } 
 
         [Inject]
         public IEnemyService EnemyService { get; set; }        
+        
+        public List<Enemy> Enemies { get; set; } = new List<Enemy>();
 
+        protected override async Task OnInitializedAsync()
+        {
+            Enemies = await EnemyService.Enemies;            
+        }
         public void Close()
         {
-            ModalDTO.SetShowModal();
-            
+            ModalDTO.SetShowModal();            
         }
+        
         public async Task SaveAsync(MouseEventArgs arg)
         {              
             await ModalDTO.EventCallback.InvokeAsync(arg);
         }
+
+        
     }
 }

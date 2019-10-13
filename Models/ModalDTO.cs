@@ -14,10 +14,10 @@ namespace BlazorApp.Models
         public string ShowModal { get; set; } = "";
         private Action _stateChange;
 
-        public ModalDTO(Action<T> action, Action stateChange)
+        public ModalDTO(Action stateChange)
         {
             _stateChange = stateChange;
-            EventCallback = new EventCallback<MouseEventArgs>(this, action);
+            EventCallback = new EventCallback<MouseEventArgs>(this, stateChange);
         }
         public void ToggleModal(T data)
         {
@@ -28,9 +28,7 @@ namespace BlazorApp.Models
         public async Task HandleEventAsync(EventCallbackWorkItem item, object arg)
         {         
             SetShowModal();
-            await item.InvokeAsync(Data);
-            // Updates the state of the app and triggers a 'redraw'
-            _stateChange.Invoke();
+            await item.InvokeAsync(arg);        
         }
 
         public void SetShowModal()
