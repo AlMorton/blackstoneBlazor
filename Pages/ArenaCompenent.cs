@@ -28,8 +28,8 @@ namespace BlazorApp.Pages
             ArenaEnemies = EnemyService.ArenaEnemies;
             Loading = false;
         }
-        public void ToggleModal(EventArgs args, int group)
-        {
+        public void ToggleModal(MouseEventArgs args, int group)
+        {            
             ModalDTO = new ModalDTO<int>(this.StateHasChanged, group);            
         }
     }

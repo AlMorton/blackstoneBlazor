@@ -26,8 +26,7 @@ namespace BlazorApp.Models
         {   
             SetShowModal();
             await item.InvokeAsync(arg);
-            _action.Invoke();
-            
+            _action.Invoke();            
         }
 
         private void SetShowModal()

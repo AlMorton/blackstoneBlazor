@@ -13,24 +13,27 @@ namespace BlazorApp.Components
     {
         [Parameter]
         public ModalDTO<int> ModalDTO { get; set; } 
-
-        [Parameter]
-        public KeyValuePair<int, List<Enemy>> Group { get; set; }
+               
+        public int Group { get; set; }
 
         [Inject]
         public IEnemyService EnemyService { get; set; }        
         
-        public List<Enemy> Enemies { get; set; } 
+        public List<Enemy> Enemies { get; set; }
+
+        protected override Task OnParametersSetAsync()
+        {
+            var t = new Task(() =>
+            {
+                Group = ModalDTO.Data;
+            });
+            t.Start();
+            return base.OnParametersSetAsync();
+        }
 
         protected override async Task OnInitializedAsync()
         {
             Enemies = await EnemyService.Enemies;              
-        }
-        
-        public async Task CloseAsync(MouseEventArgs arg)
-        {
-            EnemyService.EnemyGroups[ModalDTO.Data].Clear();
-            await ModalDTO.EventCallback.InvokeAsync(arg);              
         }
         
         public async Task SaveAsync(MouseEventArgs arg)
@@ -40,7 +43,7 @@ namespace BlazorApp.Components
 
         public void AddEnemyToGroup(Enemy enemy)
         {
-            EnemyService.AddEnemyToGroup(ModalDTO.Data, enemy);           
+            EnemyService.AddEnemyToGroup(ModalDTO.Data, enemy);                        
         }
 
         public string IsInGroup(Enemy enemy)
