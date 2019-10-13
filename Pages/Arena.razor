@@ -4,35 +4,41 @@
 @page "/arena"
 @inherits ArenaCompenent
 
-<div class="container-fluid">
-    @if (Loading)
-    {
-        <h2>Loading.......</h2>
-    }
-    <div class="row expand-panel-control" @onclick="ExpandPanelController.ExpandPanel"><span>Select Groups</span></div>
-    <div class="row enemy-selection @(ExpandPanelController.IsExpanded ? "collapsed" : "expanded")">
-
-        @foreach (var group in EnemyService.EnemyGroups.Keys)
+    <div class="container-fluid">
+        @if (Loading)
         {
-            <button class="btn btn-dark"
-                    @onclick="@(e => ToggleModal(e, group))">
-                @group
-            </button>
+            <h2>Loading.......</h2>
         }
+        <div class="row expand-panel-control" @onclick="ExpandPanelController.ExpandPanel">
+            <span>Select Groups</span>
+        </div>
+        <div class="row enemy-selection @(ExpandPanelController.IsExpanded ? "collapsed" : "expanded")">
 
-    </div>
-    <InitiativeTrackView Enemies="ArenaEnemies" />
-    <div class="row">
+            @foreach (var group in EnemyService.EnemyGroups.Keys)
+            {
+                <button class="btn btn-dark"
+                        @onclick="@(e => ToggleModal(e, group))">
+                    @group
+                </button>
+            }
+
+        </div>
+        <InitiativeTrackView Enemies="ArenaEnemies" />
         @foreach (var group in EnemyService.EnemyGroups)
         {
-            <p>@group.Key</p>
-            @foreach (var enemy in group.Value)
-            {
-                <EnemyView Enemy="enemy" Removable="true" />
-            }
+            <div class="row expand-panel-control" @onclick="ExpandPanelController.ExpandPanel">
+                <span>@group.Value.Name</span>
+            </div>
+            <div class="row">
+
+                @foreach (var enemy in group.Value.Enemies)
+                {
+                    <EnemyView Enemy="enemy" />
+                }
+            </div>
         }
+
     </div>
-</div>
 @if (ModalDTO != null)
 {
     <ModalView_ ModalDTO="ModalDTO" />

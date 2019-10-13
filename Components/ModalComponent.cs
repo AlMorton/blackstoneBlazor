@@ -43,12 +43,12 @@ namespace BlazorApp.Components
 
         public void AddEnemyToGroup(Enemy enemy)
         {
-            EnemyService.AddEnemyToGroup(ModalDTO.Data, enemy);                        
+            EnemyService.AddEnemyToGroup(ModalDTO.Data, enemy);                   
         }
 
         public string IsInGroup(Enemy enemy)
         {            
-            var isInGroup = EnemyService.EnemyGroups[ModalDTO.Data].Contains(enemy);
+            var isInGroup = EnemyService.EnemyGroups[ModalDTO.Data].Enemies.Contains(enemy);
             return isInGroup ? "selected" : "";
         }
     }

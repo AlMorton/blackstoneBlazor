@@ -2,7 +2,7 @@
 
 namespace BlazorApp.Models
 {
-    public class Adventurer : IAttributes
+    public class Adventurer : IInitiativeTrackItem
     {
         public string Name { get; set; }
         public string CSSClass { get; set; } 
