@@ -15,7 +15,7 @@
         @foreach (var group in EnemyService.EnemyGroups.Keys)
         {
             <button class="btn btn-dark"
-                    @onclick="@(() => ToggleModal(group))">
+                    @onclick="@(e => ToggleModal(e, group))">
                 @group
             </button>
         }

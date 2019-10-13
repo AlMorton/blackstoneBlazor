@@ -13,7 +13,7 @@ namespace BlazorApp.Services
         List<Enemy> ArenaEnemies { get; }
         List<IAttributes> InitiativeTrack { get; set; }
         Dictionary<int, List<Enemy>> EnemyGroups { get; set; }     
-        void AddEnemyToGroup(KeyValuePair<int, List<Enemy>> enemies);
+        void AddEnemyToGroup(int group, Enemy enemy);
     }
     public class EnemyService : IEnemyService
     {
@@ -36,9 +36,17 @@ namespace BlazorApp.Services
             SetupGroups();
         }
 
-        public void AddEnemyToGroup(KeyValuePair<int, List<Enemy>> enemies)
+        public void AddEnemyToGroup(int group, Enemy enemy)
         {
-            EnemyGroups[enemies.Key] = enemies.Value;
+            // Fill out
+            if (EnemyGroups[group].IndexOf(enemy) == -1)
+            {
+                EnemyGroups[group].Add(enemy);
+            }
+            else
+            {               
+                EnemyGroups[group].Remove(enemy);
+            }
         }
         private void SetEnemies()
         {
