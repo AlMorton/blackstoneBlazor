@@ -1,0 +1,27 @@
+﻿@using BlazorApp.Components
+@using BlazorApp.Services
+@inherits ModalComponent
+<!-- Modal -->
+<div class="modal fade @ModalDTO.ShowModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add To Group @Group</h5>
+            </div>
+            <div class="modal-body">
+                <div class="row enemy-selection">
+                    @foreach (var enemy in Enemies)
+                    {
+                        <button class="btn btn-dark @IsInGroup(enemy)" 
+                                @onclick="@(() => AddEnemyToGroup(enemy))">
+                            @enemy.Name
+                        </button>
+                    }
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" @onclick="SaveAsync" class="btn btn-dark">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>

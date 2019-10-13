@@ -4,6 +4,9 @@ using Microsoft.AspNetCore.Components;
 using BlazorApp.Services;
 using BlazorApp.Models.Enemies;
 using BlazorApp.UIControllers;
+using System;
+using Microsoft.AspNetCore.Components.Web;
+using BlazorApp.Models;
 
 namespace BlazorApp.Pages
 {
@@ -16,27 +19,18 @@ namespace BlazorApp.Pages
         public List<Enemy> Enemies { get; set; } = new List<Enemy>();
         public List<Enemy> ArenaEnemies { get; set; } = new List<Enemy>();
         public bool Loading { get; set; }
-        
+        public ModalDTO<int> ModalDTO { get; set; }
+
         protected override async Task OnInitializedAsync()
         {
             Loading = true;
             Enemies = await EnemyService.Enemies;
             ArenaEnemies = EnemyService.ArenaEnemies;
-            Loading = false;         
+            Loading = false;
         }
-        public void AddEnemy(Enemy enemy)
-        {
-            if (EnemyService.ArenaEnemies.IndexOf(enemy) == -1)
-            {
-                EnemyService.ArenaEnemies.Add(enemy);
-                EnemyService.InitiativeTrack.Add(enemy);
-            }
-            else
-            {
-                EnemyService.ArenaEnemies.Remove(enemy);
-                EnemyService.InitiativeTrack.Remove(enemy);
-            }        
+        public void ToggleModal(MouseEventArgs args, int group)
+        {            
+            ModalDTO = new ModalDTO<int>(this.StateHasChanged, group);            
         }
-        
     }
 }

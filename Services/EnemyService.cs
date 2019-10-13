@@ -4,6 +4,7 @@ using System.Net.Http;
 using Microsoft.AspNetCore.Components;
 using System.Threading.Tasks;
 using System;
+using System.Linq;
 
 namespace BlazorApp.Services
 {
@@ -11,8 +12,9 @@ namespace BlazorApp.Services
     {
         Task<List<Enemy>> Enemies { get; }
         List<Enemy> ArenaEnemies { get; }
-        List<IAttributes> InitiativeTrack { get; set; }
-
+        List<IInitiativeTrackItem> InitiativeTrack { get; set; }
+        Dictionary<int, EnemyGroup> EnemyGroups { get; set; }     
+        void AddEnemyToGroup(int group, Enemy enemy);
     }
     public class EnemyService : IEnemyService
     {
@@ -22,7 +24,8 @@ namespace BlazorApp.Services
         private List<Enemy> _enemies;
         public Task<List<Enemy>> Enemies { get; set; }
         public List<Enemy> ArenaEnemies { get; private set; }
-        public List<IAttributes> InitiativeTrack { get; set; }
+        public Dictionary<int, EnemyGroup> EnemyGroups { get; set; }
+        public List<IInitiativeTrackItem> InitiativeTrack { get; set; }
 
         public EnemyService(NavigationManager navigationManager, HttpClient httpClient)
         {
@@ -30,8 +33,37 @@ namespace BlazorApp.Services
             _http = httpClient;
             SetEnemies();
             ArenaEnemies = new List<Enemy>();
-            InitiativeTrack = new List<IAttributes>();
+            InitiativeTrack = new List<IInitiativeTrackItem>();
+            SetupGroups();
         }
+
+        public void AddEnemyToGroup(int group, Enemy enemy)
+        {
+            // Fill out
+            if (EnemyGroups[group].Enemies.IndexOf(enemy) == -1)
+            {
+                EnemyGroups[group].Enemies.Add(enemy);                
+            }
+            else
+            {               
+                EnemyGroups[group].Enemies.Remove(enemy);
+            }
+
+            AddGroupToInitiativeTrack(group);
+        }
+
+        public void AddGroupToInitiativeTrack(int group)
+        {
+            if (EnemyGroups[group].Enemies.Any() && InitiativeTrack.IndexOf(EnemyGroups[group]) == -1)
+            {
+                InitiativeTrack.Add(EnemyGroups[group]);
+            }   
+            else
+            {
+                InitiativeTrack.Remove(EnemyGroups[group]);
+            }
+        }
+
         private void SetEnemies()
         {
             Enemies = Del();
@@ -47,6 +79,15 @@ namespace BlazorApp.Services
             }
 
             return this._enemies;
-        }        
+        }
+        
+        private void SetupGroups()
+        {
+            EnemyGroups = new Dictionary<int, EnemyGroup>();
+            for (int i = 1; i < 4; i++)
+            {
+                EnemyGroups.Add(i, new EnemyGroup(i));
+            }
+        }
     }
 }

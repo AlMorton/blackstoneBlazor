@@ -23,17 +23,17 @@ namespace BlazorApp.Components
         [Parameter]
         public List<Enemy> Enemies { get; set; }
         public List<Adventurer> Adventurers { get; set; }
-        public List<IAttributes> InitiativeTrack { get; set; }
-        public IAttributes DraggedOver { get; set; }
-        public IAttributes BeingDragged { get; set; }
+        public List<IInitiativeTrackItem> InitiativeTrack { get; set; }
+        public IInitiativeTrackItem DraggedOver { get; set; }
+        public IInitiativeTrackItem BeingDragged { get; set; }
         public string DraggedStyle { get; set; }
         protected override void OnInitialized()
         {   
             Adventurers = AdventurersConstants.Adventurers;
-            InitiativeTrack = EnemyService.InitiativeTrack;
+            InitiativeTrack = EnemyService.InitiativeTrack;            
         }
 
-        public void AddAdventurer(IAttributes adventurer)
+        public void AddAdventurer(IInitiativeTrackItem adventurer)
         {
             if (InitiativeTrack.IndexOf(adventurer) == -1)
             {
@@ -50,7 +50,7 @@ namespace BlazorApp.Components
             var length = InitiativeTrack.Count;
             var maxNumber = length;
             Random random = new Random();
-            var movedToHistory = new Dictionary<int, IAttributes>();
+            var movedToHistory = new Dictionary<int, IInitiativeTrackItem>();
 
             for (int i = length - 1; i > 0; i--)
             {
@@ -76,12 +76,12 @@ namespace BlazorApp.Components
 
         }
 
-        public string SetToCSSStyle(IAttributes item)
+        public string SetToCSSStyle(IInitiativeTrackItem item)
         {
             return item.CSSClass;
         }
 
-        public string SetDragStyle(IAttributes item)
+        public string SetDragStyle(IInitiativeTrackItem item)
         {
             if (item == BeingDragged)
             {            
@@ -89,18 +89,18 @@ namespace BlazorApp.Components
             }            
             return "";
         }
-        public void OnBeingDragged(DragEventArgs e, IAttributes item)
+        public void OnBeingDragged(DragEventArgs e, IInitiativeTrackItem item)
         {
             e.DataTransfer.DropEffect = "move";
             BeingDragged = item;
         }
 
-        public void OnDraggedOver(DragEventArgs e, IAttributes item)
+        public void OnDraggedOver(DragEventArgs e, IInitiativeTrackItem item)
         {
             DraggedOver = item;
         }
 
-        public void HandleOnTouch(TouchEventArgs e, IAttributes item)
+        public void HandleOnTouch(TouchEventArgs e, IInitiativeTrackItem item)
         {
             if (BeingDragged is null)
             {
@@ -117,7 +117,7 @@ namespace BlazorApp.Components
             }                     
         }
 
-        public void HandleTouchEnter(TouchEventArgs e, IAttributes item)
+        public void HandleTouchEnter(TouchEventArgs e, IInitiativeTrackItem item)
         {
             
         }

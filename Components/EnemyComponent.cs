@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Components;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -13,13 +12,7 @@ namespace BlazorApp.Components
     public class EnemyComponent : ComponentBase
     {
         [Parameter]
-        public Enemy Enemy { get; set; }
-
-        [Parameter]
-        public EventCallback<MouseEventArgs> OnClick { get; set; }
-
-        [Parameter]
-        public bool Removable { get; set; }
+        public Enemy Enemy { get; set; }       
 
         public int DiceRoll { get; set; }            
 
