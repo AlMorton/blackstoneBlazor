@@ -26,16 +26,7 @@
         <InitiativeTrackView Enemies="ArenaEnemies" />
         @foreach (var group in EnemyService.EnemyGroups)
         {
-            <div class="row expand-panel-control" @onclick="ExpandPanelController.ExpandPanel">
-                <span>@group.Value.Name</span>
-            </div>
-            <div class="row">
-
-                @foreach (var enemy in group.Value.Enemies)
-                {
-                    <EnemyView Enemy="enemy" />
-                }
-            </div>
+            <EnemyGroupView EnemyGroup="group.Value"/>            
         }
 
     </div>
