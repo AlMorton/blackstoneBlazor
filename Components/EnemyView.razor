@@ -3,11 +3,7 @@
 @inherits EnemyComponent
 <div class="card enemy-card" draggable="true" @ondragstart="((e) => HandleDragStart(e))">
     <div class="card-body">
-        <h2 class="card-title">@Enemy.Name</h2>
-        @if (Removable)
-        {
-            <span class="oi oi-trash" @onclick="OnClick"></span>
-        }
+        <h2 class="card-title">@Enemy.Name</h2>        
 
         @foreach (var column in Enemy.BehaviourChartColumns)
         {

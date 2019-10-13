@@ -18,31 +18,19 @@ namespace BlazorApp.Pages
         public IExpandPanelController ExpandPanelController { get; set; }
         public List<Enemy> Enemies { get; set; } = new List<Enemy>();
         public List<Enemy> ArenaEnemies { get; set; } = new List<Enemy>();
-        public bool Loading { get; set; }     
-        public ModalDTO<Enemy> ModalDTO { get; set; }
+        public bool Loading { get; set; }
+        public ModalDTO<int> ModalDTO { get; set; }
+
         protected override async Task OnInitializedAsync()
         {
-            ModalDTO = new ModalDTO<Enemy>(this.AddEnemy, this.StateHasChanged);
             Loading = true;
             Enemies = await EnemyService.Enemies;
             ArenaEnemies = EnemyService.ArenaEnemies;
-            Loading = false;            
-        }       
-
-        public void AddEnemy(Enemy enemy)
-        {
-            Console.WriteLine("Add enemy called");
-            if (EnemyService.ArenaEnemies.IndexOf(enemy) == -1)
-            {
-                EnemyService.ArenaEnemies.Add(enemy);
-                EnemyService.InitiativeTrack.Add(enemy);
-            }
-            else
-            {
-                EnemyService.ArenaEnemies.Remove(enemy);
-                EnemyService.InitiativeTrack.Remove(enemy);
-            }
+            Loading = false;
         }
-
+        public void ToggleModal(MouseEventArgs args, int group)
+        {            
+            ModalDTO = new ModalDTO<int>(this.StateHasChanged, group);            
+        }
     }
 }

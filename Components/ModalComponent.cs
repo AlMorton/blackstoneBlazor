@@ -5,27 +5,52 @@ using System.Threading.Tasks;
 using BlazorApp.Models.Enemies;
 using BlazorApp.Services;
 using BlazorApp.Models;
+using System.Collections.Generic;
 
 namespace BlazorApp.Components
 {
     public class ModalComponent : ComponentBase
     {
         [Parameter]
-        public ModalDTO<Enemy> ModalDTO { get; set; } 
-        
-        public Enemy Enemy { get; set; }
+        public ModalDTO<int> ModalDTO { get; set; } 
+               
+        public int Group { get; set; }
 
         [Inject]
         public IEnemyService EnemyService { get; set; }        
+        
+        public List<Enemy> Enemies { get; set; }
 
-        public void Close()
+        protected override Task OnParametersSetAsync()
         {
-            ModalDTO.SetShowModal();
-            
+            var t = new Task(() =>
+            {
+                Group = ModalDTO.Data;
+                this.StateHasChanged();
+            });
+            t.Start();
+            return base.OnParametersSetAsync();
         }
+
+        protected override async Task OnInitializedAsync()
+        {
+            Enemies = await EnemyService.Enemies;              
+        }
+        
         public async Task SaveAsync(MouseEventArgs arg)
-        {              
+        {            
             await ModalDTO.EventCallback.InvokeAsync(arg);
+        }
+
+        public void AddEnemyToGroup(Enemy enemy)
+        {
+            EnemyService.AddEnemyToGroup(ModalDTO.Data, enemy);                   
+        }
+
+        public string IsInGroup(Enemy enemy)
+        {            
+            var isInGroup = EnemyService.EnemyGroups[ModalDTO.Data].Enemies.Contains(enemy);
+            return isInGroup ? "selected" : "";
         }
     }
 }

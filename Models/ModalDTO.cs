@@ -9,31 +9,27 @@ namespace BlazorApp.Models
 {
     public class ModalDTO<T> : IHandleEvent
     {
+        private Action _action;
         public T Data { get; set; }
         public EventCallback<MouseEventArgs> EventCallback { get; set; }
-        public string ShowModal { get; set; } = "";
-        private Action _stateChange;
+        public string ShowModal { get; set; } = "";       
 
-        public ModalDTO(Action<T> action, Action stateChange)
-        {
-            _stateChange = stateChange;
-            EventCallback = new EventCallback<MouseEventArgs>(this, action);
-        }
-        public void ToggleModal(T data)
+        public ModalDTO(Action stateChange, T data)
         {
             Data = data;
+            EventCallback = new EventCallback<MouseEventArgs>(this, stateChange);
+            _action = stateChange;
             SetShowModal();
-        }        
+        }             
 
         public async Task HandleEventAsync(EventCallbackWorkItem item, object arg)
-        {         
+        {   
             SetShowModal();
-            await item.InvokeAsync(Data);
-            // Updates the state of the app and triggers a 'redraw'
-            _stateChange.Invoke();
+            await item.InvokeAsync(arg);
+            _action.Invoke();            
         }
 
-        public void SetShowModal()
+        private void SetShowModal()
         {
             ShowModal = String.IsNullOrEmpty(ShowModal) ? "show" : "";
         }

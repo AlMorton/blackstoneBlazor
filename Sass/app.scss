@@ -213,7 +213,7 @@ app {
     to {
         height: 60px;
     }
-}  
+}
 
 .row {
     &.enemy-selection {
@@ -229,7 +229,7 @@ app {
         }
 
         &.expanded {
-            overflow:hidden;
+            overflow: hidden;
             animation: expand 0.2s ease-out;
         }
     }
@@ -302,6 +302,13 @@ h4.enemy-name {
     .modal-content {
         background-image: linear-gradient(180deg, #0e2739ab, #00b3d0fa);
         background-color: #0e2739ab;
+
+        .btn {
+            &.selected {
+                border: 1px solid #dc3545;
+                background-image: linear-gradient(to right, #0e2739ab, #ff006a59);
+            }
+        }
     }
 
     .close {
@@ -338,8 +345,8 @@ h4.enemy-name {
     }
 
     .expand-panel-control {
-        height:30px;
-    }   
+        height: 30px;
+    }
 }
 
 @media (min-width: 768px) {
