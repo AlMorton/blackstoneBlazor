@@ -57,8 +57,8 @@ namespace BlazorApp.Services
             if (EnemyGroups[group].Enemies.Any() && InitiativeTrack.IndexOf(EnemyGroups[group]) == -1)
             {
                 InitiativeTrack.Add(EnemyGroups[group]);
-            }   
-            else
+            }
+            else if (!EnemyGroups[group].Enemies.Any())
             {
                 InitiativeTrack.Remove(EnemyGroups[group]);
             }
