@@ -106,15 +106,12 @@ namespace BlazorApp.Components
             {
                 BeingDragged = item;                
             }
-            else if(BeingDragged != item)
+            else 
             {
                 DraggedOver = item;                
                 HandleDrop();
-            }
-            else
-            {
-                BeingDragged = item;
-            }                     
+            }           
+                                
         }
 
         public void HandleTouchEnter(TouchEventArgs e, IInitiativeTrackItem item)
