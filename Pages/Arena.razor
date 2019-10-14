@@ -1,35 +1,35 @@
 ﻿@using BlazorApp.Pages
 @using BlazorApp.Components
 @using BlazorApp.Services
-@page "/arena"
+@page "/"
 @inherits ArenaCompenent
 
-    <div class="container-fluid">
-        @if (Loading)
-        {
-            <h2>Loading.......</h2>
-        }
-        <div class="row expand-panel-control" @onclick="ExpandPanelController.ExpandPanel">
-            <span>Select Groups</span>
-        </div>
-        <div class="row enemy-selection @(ExpandPanelController.IsExpanded ? "collapsed" : "expanded")">
+<div class="container-fluid">
+    @if (Loading)
+    {
+        <h2>Loading.......</h2>
+    }
+    <div class="row expand-panel-control" @onclick="ExpandPanelController.ExpandPanel">
+        <span>Select Groups</span>
+    </div>
+    <div class="row enemy-selection @(ExpandPanelController.IsExpanded ? "collapsed" : "expanded")">
 
-            @foreach (var group in EnemyService.EnemyGroups.Keys)
-            {
-                <button class="btn btn-dark"
-                        @onclick="@(e => ToggleModal(e, group))">
-                    @group
-                </button>
-            }
-
-        </div>
-        <InitiativeTrackView Enemies="ArenaEnemies" />
-        @foreach (var group in EnemyService.EnemyGroups)
+        @foreach (var group in EnemyService.EnemyGroups.Keys)
         {
-            <EnemyGroupView EnemyGroup="group.Value"/>            
+            <button class="btn btn-dark"
+                    @onclick="@(e => ToggleModal(e, group))">
+                @group
+            </button>
         }
 
     </div>
+    <InitiativeTrackView Enemies="ArenaEnemies" />
+
+    @foreach (var group in EnemyService.EnemyGroups)
+    {
+        <EnemyGroupView EnemyGroup="group.Value" />
+    }
+</div>
 @if (ModalDTO != null)
 {
     <ModalView_ ModalDTO="ModalDTO" />
