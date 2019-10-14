@@ -10,7 +10,7 @@ namespace BlazorApp.Models
             new Adventurer("Espern Locarno"),
             new Adventurer("Taddeus The Purifier"),
             new Adventurer("Pious Vorne"),
-            new Adventurer("Amallyn Shadowdguide"),
+            new Adventurer("Amallyn Shadowguide"),
             new Adventurer("Dahyak Grekh"),
             new Adventurer("UR-025"),
             new Adventurer("Rein & Raus"),
