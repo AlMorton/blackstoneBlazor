@@ -1,9 +1,12 @@
 ﻿using BlazorApp.Services;
 using BlazorApp.UIControllers;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Blazor.Hosting;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace BlazorApp
 {
+
     public class Program
     {
         public static async Task Main(string[] args)
