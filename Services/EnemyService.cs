@@ -84,7 +84,7 @@ namespace BlazorApp.Services
         private void SetupGroups()
         {
             EnemyGroups = new Dictionary<int, EnemyGroup>();
-            for (int i = 1; i < 4; i++)
+            for (int i = 1; i < 5; i++)
             {
                 EnemyGroups.Add(i, new EnemyGroup(i));
             }
