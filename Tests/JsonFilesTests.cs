@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Tests
 {
-    public class Tests
+    public class JsonFilesTests
     {
         public BehaviourChartColumn BehaviourChartColumn { get; set; }
         public RollRange RollRange { get; set; }
@@ -69,15 +69,6 @@ namespace Tests
             Assert.AreEqual(EnemyActionsTest.Charge, x);
 
         }
-
-        [Test]
-        public void TimeZone()
-        {
-            // This doesn't work in blazor, sadly. Probably because none of the system timezones work from the browser.
-            var d = DateTimeOffset.Now;
-            var date = TimeZoneInfo.ConvertTime(d, TimeZoneInfo.FindSystemTimeZoneById("US Eastern Standard Time"));
-        }
-
     }
 
     public static class EnemyActionsTest

@@ -25,7 +25,6 @@ namespace BlazorApp
             });
 
             builder.RootComponents.Add<App>("app");
-
             
             await builder.Build().RunAsync();
             
