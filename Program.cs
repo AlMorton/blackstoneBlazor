@@ -1,8 +1,10 @@
 ﻿using BlazorApp.Services;
 using BlazorApp.UIControllers;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Blazor.Hosting;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
+using System.Net.Http;
+using System;
 
 namespace BlazorApp
 {
@@ -13,11 +15,13 @@ namespace BlazorApp
         {
             var builder = WebAssemblyHostBuilder.CreateDefault(args);
 
-            builder.Services.AddSingleton<IActionsService, ActionsService>();
+            builder.Services.AddTransient(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 
-            builder.Services.AddSingleton<IEnemyService, EnemyService>();
+            builder.Services.AddScoped<IActionsService, ActionsService>();
 
-            builder.Services.AddSingleton<IDiceRollService, DiceRollService>();
+            builder.Services.AddScoped<IEnemyService, EnemyService>();
+
+            builder.Services.AddScoped<IDiceRollService, DiceRollService>();
             builder.Services.AddTransient<IExpandPanelController, ExpandPanelController>();
 
             builder.Services.AddScoped<IDice, Dice>(x => {

@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Components;
 using System.Threading.Tasks;
 using System;
 using System.Linq;
+using System.Text.Json;
 
 namespace BlazorApp.Services
 {
@@ -75,7 +76,8 @@ namespace BlazorApp.Services
 
             if (_enemies is null)
             {
-                _enemies = await _http.GetJsonAsync<List<Enemy>>($"{baseUri}enemy-data/enemies.json");
+                var data = await _http.GetStringAsync($"{baseUri}enemy-data/enemies.json");
+                _enemies = JsonSerializer.Deserialize<List<Enemy>>(data);
             }
 
             return this._enemies;
