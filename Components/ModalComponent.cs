@@ -21,15 +21,11 @@ namespace BlazorApp.Components
         
         public List<Enemy> Enemies { get; set; }
 
-        protected override Task OnParametersSetAsync()
+
+        protected override void OnParametersSet()
         {
-            var t = new Task(() =>
-            {
-                Group = ModalDTO.Data;
-                this.StateHasChanged();
-            });
-            t.Start();
-            return base.OnParametersSetAsync();
+            Group = ModalDTO.Data;
+            base.OnParametersSet();
         }
 
         protected override async Task OnInitializedAsync()
