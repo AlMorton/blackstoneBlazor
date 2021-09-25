@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Components;
 using System.Threading.Tasks;
 using System;
 using System.Linq;
+using System.Text.Json;
 
 namespace BlazorApp.Services
 {
@@ -75,7 +76,8 @@ namespace BlazorApp.Services
 
             if (_enemies is null)
             {
-                _enemies = await _http.GetJsonAsync<List<Enemy>>($"{baseUri}enemy-data/enemies.json");
+                var data = await _http.GetStringAsync($"{baseUri}enemy-data/enemies.json");
+                _enemies = JsonSerializer.Deserialize<List<Enemy>>(data);
             }
 
             return this._enemies;
@@ -84,7 +86,7 @@ namespace BlazorApp.Services
         private void SetupGroups()
         {
             EnemyGroups = new Dictionary<int, EnemyGroup>();
-            for (int i = 1; i < 4; i++)
+            for (int i = 1; i < 9; i++)
             {
                 EnemyGroups.Add(i, new EnemyGroup(i));
             }

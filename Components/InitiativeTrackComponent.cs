@@ -28,9 +28,9 @@ namespace BlazorApp.Components
         public IInitiativeTrackItem BeingDragged { get; set; }
         public string DraggedStyle { get; set; }
         protected override void OnInitialized()
-        {   
+        {
             Adventurers = AdventurersConstants.Adventurers;
-            InitiativeTrack = EnemyService.InitiativeTrack;            
+            InitiativeTrack = EnemyService.InitiativeTrack;
         }
 
         public void AddAdventurer(IInitiativeTrackItem adventurer)
@@ -48,31 +48,35 @@ namespace BlazorApp.Components
         public void Shuffle()
         {
             var length = InitiativeTrack.Count;
-            var maxNumber = length;
             Random random = new Random();
             var movedToHistory = new Dictionary<int, IInitiativeTrackItem>();
 
-            for (int i = length - 1; i > 0; i--)
+            for (int num = 0; num < 10; num++)
             {
-                var moveOne = random.Next(0, maxNumber);
-               
-                if (!movedToHistory.ContainsKey(moveOne))
+                var maxNumber = length;
+
+                for (int i = length - 1; i > 0; i--)
                 {
+                    var moveOne = random.Next(0, maxNumber);
+
                     var currentItem = InitiativeTrack[i];
                     var moveTo = InitiativeTrack[moveOne];
                     InitiativeTrack[moveOne] = currentItem;
-                    InitiativeTrack[i] = moveTo;
-                    movedToHistory.Add(moveOne, currentItem);
+                    InitiativeTrack[i] = moveTo;                   
+                    maxNumber--;
                 }
-                maxNumber--;
             }
+
+            
         }
+
         public void HandleDragEnter()
         {
 
         }
 
-        public void HandleDragLeave()        {
+        public void HandleDragLeave()
+        {
 
         }
 
@@ -84,9 +88,9 @@ namespace BlazorApp.Components
         public string SetDragStyle(IInitiativeTrackItem item)
         {
             if (item == BeingDragged)
-            {            
+            {
                 return "dragged";
-            }            
+            }
             return "";
         }
         public void OnBeingDragged(DragEventArgs e, IInitiativeTrackItem item)
@@ -104,19 +108,18 @@ namespace BlazorApp.Components
         {
             if (BeingDragged is null)
             {
-                BeingDragged = item;                
+                BeingDragged = item;
             }
-            else 
+            else
             {
-                DraggedOver = item;                
+                DraggedOver = item;
                 HandleDrop();
-            }           
-                                
+            }
         }
 
         public void HandleTouchEnter(TouchEventArgs e, IInitiativeTrackItem item)
         {
-            
+
         }
 
         public void HandleDrop()

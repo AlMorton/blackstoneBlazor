@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Text.Json;
 using System.Threading.Tasks;
 using Action = BlazorApp.Models.EnemyAction;
 
@@ -39,7 +40,10 @@ namespace BlazorApp.Services
         {
             var baseUri = _navigationManager.BaseUri;
 
-            EnemyActions = await _http.GetJsonAsync<List<EnemyActions>>($"{baseUri}enemy-actions/enemy-actions.json");
+            var data = await _http.GetStringAsync($"{baseUri}enemy-actions/enemy-actions.json");
+
+            EnemyActions = JsonSerializer.Deserialize<List<EnemyActions>>(data);
+
             Actions = EnemyActions.SelectMany(ea => ea.Actions)
                 .GroupBy(ac => ac.Name, ac => ac.Description)
                 .ToDictionary(ac => ac.Key, ac => ac.First());

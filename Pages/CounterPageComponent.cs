@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.JSInterop;
-using Microsoft.AspNetCore.Blazor;
 using Microsoft.AspNetCore.Components;
 using System.Timers;
 using BlazorApp.Models;
