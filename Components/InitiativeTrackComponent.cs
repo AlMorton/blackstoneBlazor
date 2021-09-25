@@ -49,9 +49,8 @@ namespace BlazorApp.Components
         {
             var length = InitiativeTrack.Count;
             Random random = new Random();
-            var movedToHistory = new Dictionary<int, IInitiativeTrackItem>();
 
-            for (int num = 0; num < 10; num++)
+            for (int num = 0; num < 15; num++)
             {
                 var maxNumber = length;
 
@@ -71,14 +70,10 @@ namespace BlazorApp.Components
         }
 
         public void HandleDragEnter()
-        {
-
-        }
+        {}
 
         public void HandleDragLeave()
-        {
-
-        }
+        {}
 
         public string SetToCSSStyle(IInitiativeTrackItem item)
         {
@@ -118,9 +113,7 @@ namespace BlazorApp.Components
         }
 
         public void HandleTouchEnter(TouchEventArgs e, IInitiativeTrackItem item)
-        {
-
-        }
+        {}
 
         public void HandleDrop()
         {

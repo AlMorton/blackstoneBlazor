@@ -26,38 +26,36 @@ namespace BlazorApp.Services
 
     public interface IDice
     {
-        int Sides { get; }
-
         int RollDice();
     }
 
     public class Dice : IDice
     {
-        public int Sides { get; private set; }
-
-        private readonly RNGCryptoServiceProvider rngCsp = new RNGCryptoServiceProvider();
+        private readonly int _sides;
+        private readonly RandomNumberGenerator _randomNumberGenerator;
         public Dice(int sides)
         {
-            Sides = sides;
+            _sides = sides;
+            _randomNumberGenerator = RandomNumberGenerator.Create();
         }
 
         public int RollDice()
         {
+            
             byte[] randomNumber = new byte[1];
             do
             {
-                rngCsp.GetBytes(randomNumber);
+                _randomNumberGenerator.GetBytes(randomNumber);
             }
             while (!IsFairRoll(randomNumber[0]));
 
-            return (byte)((randomNumber[0] % Sides) + 1);
+            return (byte)((randomNumber[0] % _sides) + 1);
         }
-
         private bool IsFairRoll(byte roll)
         {
-            int fullSetsOfValues = Byte.MaxValue / Sides;
+            int fullSetsOfValues = Byte.MaxValue / _sides;
 
-            return roll < Sides * fullSetsOfValues;
+            return roll < _sides * fullSetsOfValues;
         }
     }
 }
