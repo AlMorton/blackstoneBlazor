@@ -1,6 +1,7 @@
 ﻿@using BlazorApp.Components
 @using BlazorApp.Services
 @inherits EnemyGroupComponent
+
 <div class="row expand-panel-control" @onclick="CollapseExpand">
     <span>@EnemyGroup.Name</span>
 </div>
@@ -11,4 +12,3 @@
         <EnemyView Enemy="enemy" />
     }
 </div>
-
