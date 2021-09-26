@@ -17,20 +17,35 @@
         @foreach (var group in EnemyService.EnemyGroups.Keys)
         {
             <button class="btn btn-dark"
-                    @onclick="@(e => ToggleModal(e, group))">
+                @onclick="@(e => ToggleModal(e, group))">
                 @group
             </button>
         }
 
     </div>
     <InitiativeTrackView Enemies="ArenaEnemies" />
+    <div class="row expand-panel-control">
+        <span>Enemy Groups</span>
+    </div>
+    <div class="row">
+        @foreach (var group in EnemyService.EnemyGroups)
+        {
+            if (group.Value.Enemies.Count() > 0)
+            {
+                <div class="drop-area enemy">
+                    <div class="initiative-card not-draggable enemy" @onclick="(() => SelectGroup(group.Key))">
+                        <span>@group.Value.Name</span>
+                        @foreach (var enemy in group.Value.Enemies)
+                        {
+                            <p class="enemy-name">@enemy.Name</p>
+                        }
+                    </div>
+                </div>
 
-    @foreach (var group in EnemyService.EnemyGroups)
-    {
-        <div class="row expand-panel-control" @onclick="(() => SelectGroup(group.Key))">
-            <span>@group.Value.Name</span>
-        </div>
-    }
+            }
+
+        }
+    </div>
 </div>
 @if (ModalDTO != null)
 {

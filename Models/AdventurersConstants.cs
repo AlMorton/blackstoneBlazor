@@ -14,6 +14,10 @@ namespace BlazorApp.Models
             new Adventurer("Dahyak Grekh"),
             new Adventurer("UR-025"),
             new Adventurer("Rein & Raus"),
+            new Adventurer("Neyam Shai Murad"),
+            new Adventurer("Gotfret de Montbard"),
+            new Adventurer("Aradia Madellan"),
+            new Adventurer("Daedalosus"),
         };
     }
 }

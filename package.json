@@ -4,12 +4,14 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
-    "bootstrap": "^4.4.1",
-    "sass": "^1.26.2"
+    "bootstrap": "^4.6.0",
+    "sass": "^1.42.1"
   },
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "sass": "sass ./Sass/style.scss ./wwwroot/css/site.css  --style compressed",
+    "sasswatch": "sass --watch ./Sass/style.scss ./wwwroot/css/site.css --style compressed"
   },
   "repository": {
     "type": "git",

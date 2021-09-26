@@ -18,6 +18,10 @@
     <None Remove="wwwroot\sass\**" />
   </ItemGroup>
 
+  <Target Name="CompileSass" BeforeTargets="Build">
+	<Exec Command="npm run sass"></Exec>
+  </Target>
+
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="6.0.0-rc.1.21452.15" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="6.0.0-rc.1.21452.15" PrivateAssets="all" />

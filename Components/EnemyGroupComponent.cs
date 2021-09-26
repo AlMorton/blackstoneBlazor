@@ -15,23 +15,12 @@ namespace BlazorApp.Components
         [Parameter]
         public int GroupNumber { get; set; }
 
-        [Inject]
-        public IExpandPanelController ExpandPanelController { get; set; }
-
         protected override Task OnInitializedAsync()
         {
             return Task.Run(() =>
             {
                 EnemyGroup = EnemyService.EnemyGroups[GroupNumber];
             });
-        }
-
-        public void CollapseExpand()
-        {
-            if(EnemyGroup.Enemies.Any())
-            {
-                ExpandPanelController.ExpandPanel();
-            }            
         }
     }
 }

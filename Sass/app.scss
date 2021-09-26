@@ -278,12 +278,21 @@ app {
     border-radius: 10px;
     cursor: grab;
 
+    &.not-draggable {
+        cursor: pointer;
+        p.enemy-name{
+            font-size:0.7rem;
+            padding: 0px;
+            margin-bottom: 0px;
+        }
+    }
+
     &.enemy {
         background-image: linear-gradient(to right, #0e2739ab, #ff006a59);
     }
 
     &.dragged {
-        background: #449498;        
+        background: #449498;
         cursor: grabbing;
     }
 

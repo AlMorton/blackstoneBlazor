@@ -4,7 +4,7 @@
 @inherits EnemyGroupComponent
 
 
-<div class="row enemy-selection @(ExpandPanelController.IsExpanded ? "collapsed" : "expanded")">
+<div class="row enemy-selection">
     @if (EnemyGroup is not null)
     {
         foreach (var enemy in EnemyGroup.Enemies)
