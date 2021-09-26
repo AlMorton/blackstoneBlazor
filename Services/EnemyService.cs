@@ -22,7 +22,7 @@ namespace BlazorApp.Services
         private readonly HttpClient _http;
         private readonly NavigationManager _navigationManager;
 
-        private List<Enemy> _enemies = new List<Enemy>();
+        private List<Enemy> _enemies;
         public Task<List<Enemy>> Enemies => SetEnemiesFromJsonAsync();
         public List<Enemy> ArenaEnemies { get; private set; }
         public Dictionary<int, EnemyGroup> EnemyGroups { get; private set; }
@@ -69,7 +69,10 @@ namespace BlazorApp.Services
             var baseUri = _navigationManager.BaseUri;
             
             var data = await _http.GetStringAsync($"{baseUri}enemy-data/enemies.json");
-            _enemies = JsonSerializer.Deserialize<List<Enemy>>(data) ?? new List<Enemy>();
+
+            if (data is null) throw new Exception("enemies.json contains no entries");
+
+            _enemies = JsonSerializer.Deserialize<List<Enemy>>(data) ?? throw new Exception("Enable to deserialize enemies.json");
 
             return this._enemies;
         }
