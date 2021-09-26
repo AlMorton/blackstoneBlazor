@@ -22,7 +22,7 @@ namespace BlazorApp.Services
         private readonly HttpClient _http;
         private readonly NavigationManager _navigationManager;
 
-        private List<Enemy> _enemies;
+        private List<Enemy> _enemies = new List<Enemy>();
         public Task<List<Enemy>> Enemies => SetEnemiesFromJsonAsync();
         public List<Enemy> ArenaEnemies { get; private set; }
         public Dictionary<int, EnemyGroup> EnemyGroups { get; private set; }
@@ -66,10 +66,10 @@ namespace BlazorApp.Services
 
         private async Task<List<Enemy>> SetEnemiesFromJsonAsync()
         {
+            if (_enemies.Count > 0) return _enemies;
+
             var baseUri = _navigationManager.BaseUri;
-
-            _enemies = new List<Enemy>();
-
+            
             foreach (var enemyFileName in EnemyFileNameConstants.EnemyFileNames)
             {
                 var data = await _http.GetStringAsync($"{baseUri}enemy-data/{enemyFileName}.json");

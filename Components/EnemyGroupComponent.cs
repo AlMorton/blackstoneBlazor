@@ -2,23 +2,25 @@
 using BlazorApp.Models.Enemies;
 using BlazorApp.UIControllers;
 using System.Linq;
+using BlazorApp.Services;
 
 namespace BlazorApp.Components
 {
     public class EnemyGroupComponent : ComponentBase
     {
-        [Parameter]
+        [Inject]
+        public IEnemyService EnemyService { get; set; }
         public EnemyGroup EnemyGroup { get; set; }
 
-        [Inject]
-        public IExpandPanelController ExpandPanelController { get; set; }
+        [Parameter]
+        public int GroupNumber { get; set; }
 
-        public void CollapseExpand()
+        protected override Task OnInitializedAsync()
         {
-            if(EnemyGroup.Enemies.Any())
+            return Task.Run(() =>
             {
-                ExpandPanelController.ExpandPanel();
-            }            
+                EnemyGroup = EnemyService.EnemyGroups[GroupNumber];
+            });
         }
     }
 }

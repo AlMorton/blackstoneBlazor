@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BlazorApp.Pages
 {
-    public class IndexComponent : ComponentBase
+    public class EnemiesComponent : ComponentBase
     {
         [Inject]
         public IEnemyService EnemyService { get; private set; }

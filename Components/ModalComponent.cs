@@ -19,7 +19,7 @@ namespace BlazorApp.Components
         [Inject]
         public IEnemyService EnemyService { get; set; }        
         
-        public List<Enemy> Enemies { get; set; }
+        public List<Enemy> Enemies { get; set; } = new List<Enemy>();
 
 
         protected override void OnParametersSet()
@@ -44,9 +44,8 @@ namespace BlazorApp.Components
         }
 
         public string IsInGroup(Enemy enemy)
-        {            
-            var isInGroup = EnemyService.EnemyGroups[ModalDTO.Data].Enemies.Contains(enemy);
-            return isInGroup ? "selected" : "";
+        {               
+            return EnemyService.EnemyGroups[ModalDTO.Data].Enemies.Contains(enemy) ? "selected" : "";
         }
     }
 }

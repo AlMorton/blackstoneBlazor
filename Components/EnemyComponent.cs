@@ -40,10 +40,5 @@ namespace BlazorApp.Components
         {
             IsCollapsed = !IsCollapsed;
         }
-
-        public DragEventArgs HandleDragStart(DragEventArgs dragEvent)
-        {   
-            return dragEvent;
-        }
     }
 }
