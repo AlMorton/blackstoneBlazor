@@ -13,6 +13,9 @@ namespace BlazorApp.Pages
     public class ArenaCompenent : ComponentBase
     {
         [Inject]
+        NavigationManager NavigationManager { get; set; }
+
+        [Inject]
         public IEnemyService EnemyService { get; private set; }
         [Inject]
         public IExpandPanelController ExpandPanelController { get; set; }
@@ -31,6 +34,11 @@ namespace BlazorApp.Pages
         public void ToggleModal(MouseEventArgs args, int group)
         {            
             ModalDTO = new ModalDTO<int>(this.StateHasChanged, group);            
+        }
+
+        public void SelectGroup(int groupNumber)
+        {
+            NavigationManager.NavigateTo($"enemygroup/{groupNumber}");
         }
     }
 }

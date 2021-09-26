@@ -27,7 +27,9 @@
 
     @foreach (var group in EnemyService.EnemyGroups)
     {
-        <EnemyGroupView EnemyGroup="group.Value" />
+        <div class="row expand-panel-control" @onclick="(() => SelectGroup(group.Key))">
+            <span>@group.Value.Name</span>
+        </div>
     }
 </div>
 @if (ModalDTO != null)

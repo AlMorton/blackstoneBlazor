@@ -1,14 +1,15 @@
-﻿@using BlazorApp.Components
+﻿@page "/enemygroup/{groupNumber:int}"
+@using BlazorApp.Components
 @using BlazorApp.Services
 @inherits EnemyGroupComponent
 
-<div class="row expand-panel-control" @onclick="CollapseExpand">
-    <span>@EnemyGroup.Name</span>
-</div>
-<div class="row enemy-selection @(ExpandPanelController.IsExpanded ? "collapsed" : "expanded")">
 
-    @foreach (var enemy in EnemyGroup.Enemies)
+<div class="row enemy-selection @(ExpandPanelController.IsExpanded ? "collapsed" : "expanded")">
+    @if (EnemyGroup is not null)
     {
-        <EnemyView Enemy="enemy" />
+        foreach (var enemy in EnemyGroup.Enemies)
+        {
+            <EnemyView Enemy="enemy" />
+        }
     }
 </div>
