@@ -67,12 +67,19 @@ namespace BlazorApp.Services
         private async Task<List<Enemy>> SetEnemiesFromJsonAsync()
         {
             var baseUri = _navigationManager.BaseUri;
-            
-            var data = await _http.GetStringAsync($"{baseUri}enemy-data/enemies.json");
 
-            if (data is null) throw new Exception("enemies.json contains no entries");
+            _enemies = new List<Enemy>();
 
-            _enemies = JsonSerializer.Deserialize<List<Enemy>>(data) ?? throw new Exception("Enable to deserialize enemies.json");
+            foreach (var enemyFileName in EnemyFileNameConstants.EnemyFileNames)
+            {
+                var data = await _http.GetStringAsync($"{baseUri}enemy-data/{enemyFileName}.json");
+
+                if (data is null) throw new Exception("enemies.json contains no entries");
+
+                var enemy = JsonSerializer.Deserialize<Enemy>(data) ?? throw new Exception("Enable to deserialize enemies.json");
+
+                _enemies.Add(enemy);
+            }
 
             return this._enemies;
         }
@@ -85,5 +92,31 @@ namespace BlazorApp.Services
                 EnemyGroups.Add(i, new EnemyGroup(i));
             }
         }
+    }
+
+    public static class EnemyFileNameConstants
+    {
+        public static string[] EnemyFileNames = new string[14] { 
+            Ambull,AmbullEnraged,BorewyrmInfestation,
+            ChaosBeastman,ChaosSpaceMarine, CultistFireBrand, 
+            Cultist, NegavoltCultist, ObsidiusMallex,ObsidiusMallexEmpowered,
+            RoguePsyker, SpindleDrone, TraitorGuard, UrGhul};
+
+        public const string Ambull = "ambull";
+        public const string AmbullEnraged = "ambull-enraged";
+        public const string BorewyrmInfestation = "borewyrm-infestation";
+        public const string ChaosBeastman = "chaos-beastman";
+        public const string ChaosSpaceMarine = "chaos-spacemarine";
+        public const string CultistFireBrand = "cultist-firebrand";
+        public const string Cultist = "cultist";
+        public const string NegavoltCultist = "negavolt-cultist";
+        public const string ObsidiusMallex = "obsidius-mallex";
+        public const string ObsidiusMallexEmpowered = "obsidius-mallex-empowered";
+        public const string RoguePsyker = "rogue-psyker";
+        public const string SpindleDrone = "spindle-drone";
+        public const string TraitorGuard = "traitor-guard";
+        public const string UrGhul = "ur-ghul";
+
+
     }
 }
