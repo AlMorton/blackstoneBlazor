@@ -14,7 +14,7 @@ namespace BlazorApp.Services
         Task<List<Enemy>> Enemies { get; }
         List<Enemy> ArenaEnemies { get; }
         List<IInitiativeTrackItem> InitiativeTrack { get; set; }
-        Dictionary<int, EnemyGroup> EnemyGroups { get; set; }     
+        Dictionary<int, EnemyGroup> EnemyGroups { get;  }     
         void AddEnemyToGroup(int group, Enemy enemy);
     }
     public class EnemyService : IEnemyService
@@ -22,17 +22,16 @@ namespace BlazorApp.Services
         private readonly HttpClient _http;
         private readonly NavigationManager _navigationManager;
 
-        private List<Enemy> _enemies;
-        public Task<List<Enemy>> Enemies { get; set; }
+        private List<Enemy> _enemies = new List<Enemy>();
+        public Task<List<Enemy>> Enemies => SetEnemiesFromJsonAsync();
         public List<Enemy> ArenaEnemies { get; private set; }
-        public Dictionary<int, EnemyGroup> EnemyGroups { get; set; }
+        public Dictionary<int, EnemyGroup> EnemyGroups { get; private set; }
         public List<IInitiativeTrackItem> InitiativeTrack { get; set; }
 
         public EnemyService(NavigationManager navigationManager, HttpClient httpClient)
         {
             _navigationManager = navigationManager;
-            _http = httpClient;
-            SetEnemies();
+            _http = httpClient;           
             ArenaEnemies = new List<Enemy>();
             InitiativeTrack = new List<IInitiativeTrackItem>();
             SetupGroups();
@@ -65,20 +64,12 @@ namespace BlazorApp.Services
             }
         }
 
-        private void SetEnemies()
-        {
-            Enemies = Del();
-        }        
-
-        private async Task<List<Enemy>> Del()
+        private async Task<List<Enemy>> SetEnemiesFromJsonAsync()
         {
             var baseUri = _navigationManager.BaseUri;
-
-            if (_enemies is null)
-            {
-                var data = await _http.GetStringAsync($"{baseUri}enemy-data/enemies.json");
-                _enemies = JsonSerializer.Deserialize<List<Enemy>>(data);
-            }
+            
+            var data = await _http.GetStringAsync($"{baseUri}enemy-data/enemies.json");
+            _enemies = JsonSerializer.Deserialize<List<Enemy>>(data) ?? new List<Enemy>();
 
             return this._enemies;
         }
