@@ -123,6 +123,22 @@ app {
 
 /* My little style changes and overrides */
 
+.btn-adventurer {
+    background-image: $gradient-blue-grey;
+    background-repeat: no-repeat;
+    color: #adb5bd;
+
+    &:hover {
+        color: #fff;
+    }
+
+    &.selected {
+        color: #fff;
+        border-radius: 50px;
+        background-image: linear-gradient(to right, #1d4f73, #017c90);
+    }
+}
+
 .loading {
     color: #fff;
 }
@@ -165,7 +181,7 @@ app {
         z-index: 10;
         background-color: #01023e7d;
         border-radius: 10px;
-        border: 1px solid #28a745;
+        border: 1px solid $green;
 
         &.collapsed {
             height: 48px;
@@ -262,7 +278,7 @@ app {
     justify-content: left;
     min-height: 70px;
     border-radius: 10px;
-    border: 1px solid #28a745;
+    border: 1px solid $green;
     margin: 5px;
 
     &.enemy {
@@ -271,7 +287,7 @@ app {
 }
 
 .initiative-card {
-    background-image: linear-gradient(to right, #0e2739ab, #00dcff59);
+    background-image: $gradient-blue-grey;
     margin: 5px;
     padding: 5px;
     flex: 1;
@@ -280,8 +296,9 @@ app {
 
     &.not-draggable {
         cursor: pointer;
-        p.enemy-name{
-            font-size:0.7rem;
+
+        p.enemy-name {
+            font-size: 0.7rem;
             padding: 0px;
             margin-bottom: 0px;
         }

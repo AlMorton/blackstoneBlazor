@@ -11,5 +11,18 @@ namespace BlazorApp.Models
             Name = name;
             CSSClass = "adventurer";
         }
+
+        public void Addventurer(IList<IInitiativeTrackItem> list)
+        {
+            CSSClass += " selected";
+            list.Add(this);
+        }
+
+        public void RemoveAdventurer(IList<IInitiativeTrackItem> list)
+        {
+            CSSClass = "adventurer";
+            list.Remove(this);
+
+        }
     }
 }

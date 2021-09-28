@@ -33,15 +33,15 @@ namespace BlazorApp.Components
             InitiativeTrack = EnemyService.InitiativeTrack;
         }
 
-        public void AddAdventurer(IInitiativeTrackItem adventurer)
+        public void AddAdventurer(Adventurer adventurer)
         {
             if (InitiativeTrack.IndexOf(adventurer) == -1)
             {
-                InitiativeTrack.Add(adventurer);
+                adventurer.Addventurer(InitiativeTrack);
             }
             else
             {
-                InitiativeTrack.Remove(adventurer);
+                adventurer.RemoveAdventurer(InitiativeTrack);
             }
         }
 
@@ -64,9 +64,7 @@ namespace BlazorApp.Components
                     InitiativeTrack[i] = moveTo;                   
                     maxNumber--;
                 }
-            }
-
-            
+            }           
         }
 
         public void HandleDragEnter()

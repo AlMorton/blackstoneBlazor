@@ -3,10 +3,10 @@
 @inherits InitiativeTrackComponent
 
 <div class="row expand-panel-control" @onclick="ExpandPanelController.ExpandPanel"><span>Select Players</span></div>
-<div class="row enemy-selection @(ExpandPanelController.IsExpanded ? "collapsed" : "expanded")">
+<div class="row enemy-selection @(ExpandPanelController.IsExpanded ? "expanded" : "collapsed")">
     @foreach (var adventurer in Adventurers)
     {
-        <button class="btn btn-light"
+        <button class="btn btn-@adventurer.CSSClass"
                 @onclick="@( () => AddAdventurer(adventurer))">
             @adventurer.Name
         </button>

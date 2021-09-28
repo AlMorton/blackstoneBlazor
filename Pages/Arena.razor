@@ -9,10 +9,11 @@
     {
         <h2>Loading.......</h2>
     }
+    <InitiativeTrackView Enemies="ArenaEnemies" />
     <div class="row expand-panel-control" @onclick="ExpandPanelController.ExpandPanel">
-        <span>Select Groups</span>
+        <span>Select Enemy Groups</span>
     </div>
-    <div class="row enemy-selection @(ExpandPanelController.IsExpanded ? "collapsed" : "expanded")">
+    <div class="row enemy-selection @(ExpandPanelController.IsExpanded ? "expanded" : "collapsed")">
 
         @foreach (var group in EnemyService.EnemyGroups.Keys)
         {
@@ -23,7 +24,6 @@
         }
 
     </div>
-    <InitiativeTrackView Enemies="ArenaEnemies" />
     <div class="row expand-panel-control">
         <span>Enemy Groups</span>
     </div>
@@ -41,11 +41,10 @@
                         }
                     </div>
                 </div>
-
             }
-
         }
     </div>
+
 </div>
 @if (ModalDTO != null)
 {
