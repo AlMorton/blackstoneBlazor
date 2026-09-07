@@ -11,7 +11,7 @@ project or API; all game data is static JSON served from `wwwroot` and fetched o
 ## Commands
 
 ```bash
-npm install                    # required before the first build: Sass imports bootstrap from ./node_modules
+npm install                    # required before the first build: Sass resolves bootstrap from ./node_modules
 npm run sass                   # compile Sass/style.scss -> wwwroot/css/site.css (also run automatically pre-build)
 npm run sasswatch              # watch mode while iterating on styles
 
@@ -66,6 +66,12 @@ This is the core game mechanic and spans three files:
 **Action names in enemy JSON must exactly match a `Name` in `enemy-actions.json`**, otherwise the description
 resolves to empty and the player sees a blank rules panel.
 
+The flattening is name-only and first-wins, so it cannot represent an action whose rules differ per enemy. `Tunnel` is
+exactly that case — the Ambull burrows away and resurfaces, the Borewyrm Infestation relocates to the furthest
+discovery marker — so it is deliberately left undescribed rather than given one enemy the other's rules. Adding it
+requires making `ActionsService` resolve per enemy first, falling back to the shared `All` group. The sibling
+TypeScript app (`../ts`) does this if you want a reference.
+
 ### Adding an enemy
 
 Add the JSON file to `wwwroot/enemy-data/`, then add a `const` **and** an array entry in `EnemyFileNameConstants`
@@ -74,8 +80,25 @@ bumped too. Enemies are discovered only through that list — dropping a file in
 
 ### Styling
 
-Sass in `Sass/` compiles to `wwwroot/css/site.css`; `style.scss` pulls in Bootstrap 4 from `node_modules` plus
-`app.scss`. Edit the `.scss` sources, never `wwwroot/css/site.css` (generated, but committed).
+Sass in `Sass/` compiles to `wwwroot/css/site.css`; `style.scss` pulls in Bootstrap 4 plus `app.scss`. Edit the
+`.scss` sources, never `wwwroot/css/site.css` (generated, but committed).
+
+Both npm scripts pass `--load-path=node_modules --quiet-deps`, and `style.scss` imports Bootstrap as
+`@import 'bootstrap/scss/bootstrap'` rather than by relative path. **Keep it that way.** Bootstrap 4's SCSS is full of
+constructs modern Dart Sass deprecates (`/` division, `darken()`, global built-ins), and `--quiet-deps` only silences
+warnings from files Sass considers dependencies — which means resolved through a load path. Importing it as
+`../node_modules/bootstrap/scss/bootstrap` instead makes Sass treat it as first-party code and floods every build with
+20 extra warnings. Neither flag changes the compiled output.
+
+Five `@import` deprecation warnings per build are expected and are ours, not Bootstrap's: `@import` goes away in Dart
+Sass 3.0, but Bootstrap 4 has no `@use` entry point, so migrating to `@use` isn't possible until Bootstrap 5. They are
+left visible on purpose.
+
+`sass` is pinned to `^1.104.0`. Don't downgrade: 1.42.x pulled `chokidar` and with it a `picomatch` 2.3.x carrying a
+high-severity advisory. If you regenerate `site.css` with an older Sass the file will shrink by ~8KB, which is only a
+serialisation difference — newer Dart Sass writes `transparent` as `rgba(0,0,0,0)` and keeps function-computed colours
+at full precision (`#721c24` becomes `rgb(44.86%,10.81%,14.07%)`) instead of rounding to hex. The rendered output is
+pixel-identical either way.
 
 ## Known rough edges
 
@@ -91,3 +114,7 @@ Sass in `Sass/` compiles to `wwwroot/css/site.css`; `style.scss` pulls in Bootst
 - `ActionsService`'s constructor kicks off loading with `new Task(async () => ...)` + `RunSynchronously()`, which does
   not await the inner async work, so `Actions` can still be null when a component first reads it.
 - `Pages/Counter.razor` / `CounterPageComponent` is leftover template scaffolding, unrelated to the game.
+- The behaviour tables in `wwwroot/enemy-data/` have been checked cell by cell against scans of the physical cards,
+  and every column of all fourteen enemies resolves each face 1-20 with no gaps or overlaps. Don't "correct" them
+  back: several previously carried another enemy's column verbatim. Bands are merged where adjacent rows share an
+  action, so they won't line up one-to-one with the seven rows printed on a card.
